@@ -1,0 +1,1 @@
+web: gunicorn education_haiti.wsgi --log-file -
