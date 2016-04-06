@@ -1,0 +1,19 @@
+<!--{% if request.user.is_authenticated %}
+    {% csrf_token %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'base' %}"> Logged in as <b><i>{{ user.name }}</i></b></a></li>
+        <li><a href="{% url 'auth_logout' %}">Log off</a></li>
+    </ul>
+        <ul class="nav navbar-nav">
+        <li><a href="{% url 'base' %}"> Your Profile </a></li> </li>
+    </ul>
+
+{% else %}-->
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="#">Log in</a></li>
+</ul>
+<ul class="nav navbar-nav">
+    <li><a href="#"> Not Logged In </a></li>
+</ul>
+
+{% endif %}
