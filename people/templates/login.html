@@ -1,0 +1,31 @@
+{% extends "layout_en.html" %}
+{% load staticfiles %}
+
+{% block title %} Log in {% endblock %}
+{% block link %}
+	<link rel="stylesheet" href={% static 'people/css/login.css' %}/>
+{% endblock %}
+
+{% block content %}
+	<div class="cover-container">
+		<div class="inner cover">
+			<p class="cover-heading">Education Haiti</p>
+
+			<form class="form-signin" id="form" method="POST" action={% url 'people:login' %}> {% csrf_token %}
+				{{ form.errors }}
+				{% for field in form %}
+					{% if field.error %}
+						{{ field.error }}
+					{% endif %}
+				  <label for="{{ field.name }}" class="sr-only">{{ field.label }}</label>
+					{{ field }}
+				{% endfor %}
+				<button class="btn btn-lg btn-primary btn-block" type="submit">log in</button>
+			</form>
+
+			<p>
+				<a href={% url 'people:register' %}>create an account</a>
+			</p>
+		</div>
+	</div>
+{% endblock %}
