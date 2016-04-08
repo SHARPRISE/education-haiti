@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'people',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -141,3 +142,18 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# Internals
+# Auth
+AUTH_USER_MODEL = "people.User"
+
+# Session
+
+# Session engine
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+#
+SESSION_COOKIE_HTTPONLY = True
+
+# The number of seconds until this session expires
+SESSION_COOKIE_AGE = 172800

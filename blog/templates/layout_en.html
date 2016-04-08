@@ -47,10 +47,9 @@
                 <li><a href="#">Our Programs</a> </li>
                 <li><a href="#">About Us</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+                  <a href={% url "people:login" %} class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Mentor Log In</a></li>
-                    <li><a href="#">Mentee Log In</a></li>
+                    <li><a href={% url "people:login" %}>Log In</a></li>
                   </ul>
                 </li>
               </ul>

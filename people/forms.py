@@ -25,9 +25,17 @@ class LoginForm(forms.ModelForm):
         }
 
 class RegisterForm(forms.ModelForm):
+    rank  = forms.MultipleChoiceField(widget=forms.Select(
+        attrs = {
+            'class' : 'form-control',
+            'required' : True,
+            'placeholder' : "Mentor or mentee"
+        },
+    ), choices=User.RANK_CHOICES, label="Mentor or mentee")
+
     class Meta:
         model   = User
-        fields  = ('email', 'username', 'password',)
+        fields  = ('email', 'username', 'password', 'rank')
         widgets = {
             'email' : forms.EmailInput(
                 attrs = {
@@ -47,27 +55,6 @@ class RegisterForm(forms.ModelForm):
                 attrs = {
                     'class' : 'form-control',
                     'placeholder' : 'password',
-                    'required' : True,
-                }
-            )
-        }
-
-class ActivationForm(forms.ModelForm):
-    class Meta:
-        model   = User
-        fields  = ('email', 'activation_key',)
-        widgets = {
-            'email' : forms.EmailInput(
-                attrs = {
-                    'class' : 'form-control',
-                    'placeholder' : 'email',
-                    'required' : True,
-                }
-            ),
-            'activation_key' : forms.TextInput(
-                attrs = {
-                    'class' : 'form-control',
-                    'placeholder' : 'activation key',
                     'required' : True,
                 }
             )

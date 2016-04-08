@@ -9,7 +9,6 @@ class User(AbstractUser):
         ('B', 'mentee'),
     )
 
-    activation_key  = models.TextField()
     rank            = models.CharField(max_length=1, choices=RANK_CHOICES)
     hidden          = models.BooleanField(default = False)
 
