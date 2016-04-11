@@ -25,7 +25,7 @@ class LoginForm(forms.ModelForm):
         }
 
 class RegisterForm(forms.ModelForm):
-    rank  = forms.MultipleChoiceField(widget=forms.Select(
+    rank  = forms.MultipleChoiceField(widget=forms.RadioSelect(
         attrs = {
             'class' : 'form-control',
             'required' : True,
