@@ -37,6 +37,7 @@ class User(AbstractUser):
 
 User._meta.get_field('email')._unique = True
 
+
 # Profile model
 class Profile(models.Model):
 

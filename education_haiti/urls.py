@@ -24,9 +24,7 @@ from blog import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-
     url(r'^$', views.index, name='index'),
     url(r'^blog/', include(blog_urls)),
-
     url(r'^people/', include(people_urls, namespace="people")),
 ]

@@ -9,14 +9,14 @@ class SuccessStory(models.Model):
         author = models.CharField(max_length=50, default='Author')
         description = models.CharField(max_length=255, default="Success Story description")
         content = models.TextField(default="Story content")
-        created = models.DateTimeField(auto_now_add=True, verbose_name="Created on")
-        text = models.CharField(max_length=25, default='test')
+        created = models.DateField(auto_now_add=True, verbose_name='Posted on')
+        published = models.BooleanField(default=True)
 
         def __str__(self):
             return self.title
 
 class Meta:
-        ordering = ['-created']
+        ordering = ['created']
 
         def __unicode__(self):
                 return u'%s' % self.title

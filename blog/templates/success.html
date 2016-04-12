@@ -1,0 +1,19 @@
+{% extends 'layout_en.html' %}
+
+{% block content %}
+
+<article>
+<h1>{{story.title}}</h1>
+<p>
+    Posted on
+    <time datetime="{{story.created|date:"c"}}">
+    {{story.created|date}}
+    </time>
+</p>
+<p>
+  {{story.description}}
+</p>
+    {{story.content|safe}}
+</article>
+
+{% endblock %}
