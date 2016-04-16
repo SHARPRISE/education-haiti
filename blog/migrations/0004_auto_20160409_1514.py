@@ -16,11 +16,6 @@ class Migration(migrations.Migration):
             model_name='successstory',
             name='text',
         ),
-        migrations.AddField(
-            model_name='successstory',
-            name='published',
-            field=models.BooleanField(default=True),
-        ),
         migrations.AlterField(
             model_name='successstory',
             name='created',

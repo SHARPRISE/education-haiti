@@ -10,11 +10,3 @@ class Migration(migrations.Migration):
     dependencies = [
         ('blog', '0003_auto_20160411_1550'),
     ]
-
-    operations = [
-        migrations.AddField(
-            model_name='successstory',
-            name='published',
-            field=models.BooleanField(default=True),
-        ),
-    ]
