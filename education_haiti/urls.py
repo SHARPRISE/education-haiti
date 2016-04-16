@@ -20,6 +20,7 @@ from django.contrib import admin
 from blog import urls as blog_urls
 from people import urls as people_urls
 from mentors import urls as our_mentors_urls
+from programs import urls as  programs_urls
 
 from blog import views
 
@@ -29,4 +30,5 @@ urlpatterns = [
     url(r'^blog/', include(blog_urls)),
     url(r'^people/', include(people_urls, namespace="people")),
     url(r'^our_mentors/', include(our_mentors_urls)),
+    url(r'^programs/', include(programs_urls)),
 ]

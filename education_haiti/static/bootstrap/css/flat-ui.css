@@ -3,6 +3,30 @@
  * Copyright 2013-2014 Designmodo, Inc.
  */
 
+.th_contact010
+{
+background: #4C2A85;
+padding: inherit;
+width:30%;
+border-bottom:5px solid #4C2A85;
+}
+
+.th_contact011
+{
+background: black;
+padding:2rem;
+width:30%;
+border-bottom:5px solid #B5EAE2;
+}
+
+.th_contact02
+{
+background-color: black;
+border-radius:0 0 12px 12px;
+padding:2rem;
+width:30%;
+}
+
 @font-face {
   font-family: 'Lato';
   font-style: normal;

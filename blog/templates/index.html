@@ -36,7 +36,7 @@
           <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
+              <h1>Our Programs.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
             </div>
@@ -75,7 +75,7 @@
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="{% static 'bootstrap/img/icons/png/Pensils.png' %}" alt="Generic placeholder image" width="140" height="140">
           <h2>Our Programs</h2>
           <p>List of offered programs at Education Haiti.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -127,7 +127,7 @@
       <!-- /END THE FEATURETTES -->
 
             <div class="row" style="padding-top:4em;padding-bottom:4em;text-align:center;">
-        <a href="#" class="btn btn-hg btn-primary">Create your account now</a>
+        <a href="{% url 'people:register' %}" class="btn btn-hg btn-primary">Create your account now</a>
       </div>
         </div>
 
