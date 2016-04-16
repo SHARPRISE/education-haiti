@@ -79,18 +79,18 @@ WSGI_APPLICATION = 'education_haiti.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 # uncomment and change only if you are working with local database
-DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'education-haiti-local',
-        'USER': 'postgres',
-        'PASSWORD': 'LexLuminisCC97'
-    }
-}
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#       'NAME': 'education-haiti-local',
+#       'USER': 'postgres',
+#        'PASSWORD': 'LexLuminisCC97'
+#    }
+#}
 
 # comment when using local
-#import dj_database_url
-#DATABASES ={'default':dj_database_url.config(default='postgres://sjruznrmhwwbhx:MHkjKDDAvJnixdPuh1a_pdMAmb@ec2-54-235-93-178.compute-1.amazonaws.com:5432/d87jiuahd98132')}
+import dj_database_url
+DATABASES ={'default':dj_database_url.config(default='postgres://sjruznrmhwwbhx:MHkjKDDAvJnixdPuh1a_pdMAmb@ec2-54-235-93-178.compute-1.amazonaws.com:5432/d87jiuahd98132')}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
