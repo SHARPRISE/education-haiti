@@ -3,10 +3,11 @@
 
 {% block title %} Register {% endblock %}
 {% block link %}
-	<link rel="stylesheet" href={% static 'people/css/register.css' %}/>
+	<link rel="stylesheet" href="{% static 'people/css/register.css' %}"/>
 {% endblock %}
 
 {% block content %}
+<br /><br /><br />
 	<div class="cover-container">
 		<div class="inner cover">
 			<p class="cover-heading">Education Haiti</p>
@@ -24,7 +25,7 @@
 			</form>
 
 			<p>
-				<a href={% url 'people:login' %}>login</a>
+				<a href="{% url 'people:login' %}">login</a>
 			</p>
 		</div>
 	</div>
