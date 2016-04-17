@@ -12,7 +12,7 @@ from hashlib import sha1
 def register(request, template="register.html"):
     if request.user.is_authenticated():
         # TODO home page
-        return redirect('index')
+        return redirect("index")
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -29,11 +29,9 @@ def register(request, template="register.html"):
             new_user.is_active = False
             # rank
             new_user.rank = form.cleaned_data["rank"]
-            print(form.cleaned_data["rank"])
-
             new_user.save()
 
-            return redirect('index')
+            return redirect("index")
     else:
         form = RegisterForm()
     return render(request, template, {"form":form})
@@ -41,7 +39,7 @@ def register(request, template="register.html"):
 def login_view(request, template="login.html"):
     if request.user.is_authenticated():
         # TODO redirect to home page
-        return redirect('index')
+        return redirect("index")
 
     if request.method == "POST":
         username = request.POST["username"]
@@ -53,7 +51,7 @@ def login_view(request, template="login.html"):
             if user.is_active:
                 login(request, user)
                 # TODO redirect to home page
-                return redirect("blog:index")
+                return redirect("index")
             else:
                 # account disabled or inactive
                 pass
@@ -68,4 +66,4 @@ def login_view(request, template="login.html"):
 
 def logout_view(request):
     logout(request)
-    return redirect('index')
+    return redirect("blog:index")

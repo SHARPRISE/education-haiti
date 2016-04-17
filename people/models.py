@@ -9,7 +9,7 @@ class User(AbstractUser):
         ('B', 'mentee'),
     )
 
-    rank            = models.CharField(max_length=1, choices=RANK_CHOICES)
+    rank            = models.CharField(max_length=1, choices=RANK_CHOICES, default=RANK_CHOICES[1])
     hidden          = models.BooleanField(default = False)
 
     REQUIRED_FIELDS = ["email"]
@@ -37,14 +37,25 @@ class User(AbstractUser):
 
 User._meta.get_field('email')._unique = True
 
-
-# Profile model
-class Profile(models.Model):
+# Mentee model
+class Mentee(models.Model):
 
     user        = models.OneToOneField(User)
     picture     = models.ImageField(upload_to="profile_images", blank=True)
 
+    def __str__(self):
+        return "mentee's profile %s" % self.user.email
+
+# Mentor model
+class Mentor(models.Model):
+
+    user        = models.OneToOneField(User)
+    picture     = models.ImageField(upload_to="profile_images", blank=True)
+
+    biography   = models.TextField()
+
+    mentees     = models.ManyToManyField(Mentee)
     hidden      = models.BooleanField(default=False)
 
     def __str__(self):
-        return "%s 's profile" % self.user.email
+        return "mentor's profile %s" % self.user.email

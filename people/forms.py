@@ -25,14 +25,6 @@ class LoginForm(forms.ModelForm):
         }
 
 class RegisterForm(forms.ModelForm):
-    rank  = forms.MultipleChoiceField(widget=forms.RadioSelect(
-        attrs = {
-            'class' : 'form-control',
-            'required' : True,
-            'placeholder' : "Mentor or mentee"
-        },
-    ), choices=User.RANK_CHOICES, label="Mentor or mentee")
-
     class Meta:
         model   = User
         fields  = ('email', 'username', 'password', 'rank')
@@ -57,5 +49,12 @@ class RegisterForm(forms.ModelForm):
                     'placeholder' : 'password',
                     'required' : True,
                 }
+            ),
+            'rank'     : forms.RadioSelect(
+                attrs = {
+                    'class' : 'form-control',
+                    'required' : True,
+                    'placeholder' : "Mentor or mentee"
+                },
             )
         }

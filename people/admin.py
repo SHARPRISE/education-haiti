@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from people.models import User, Profile
+from people.models import User, Mentor, Mentee
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
@@ -11,8 +11,12 @@ class UserAdmin(admin.ModelAdmin):
     ordering        = ('email', 'is_staff',)
     search_fields   = ('email', 'username',)
 
-class ProfileAdmin(admin.ModelAdmin):
+class MentorAdmin(admin.ModelAdmin):
+    fields          = ('user',)
+
+class MenteeAdmin(admin.ModelAdmin):
     fields          = ('user',)
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Mentor, MentorAdmin)
+admin.site.register(Mentee, MenteeAdmin)
