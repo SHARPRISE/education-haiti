@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -31,7 +31,7 @@ def register(request, template="register.html"):
             new_user.rank = form.cleaned_data["rank"]
             new_user.save()
 
-            return redirect("index")
+            return HttpResponse("register successfully")
     else:
         form = RegisterForm()
     return render(request, template, {"form":form})
@@ -45,7 +45,7 @@ def login_view(request, template="login.html"):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        user = authenticate(username=username, password=password)
+        user = get_object_or_404(User, username=username)
         if user is not None:
             # the password verified for the user
             if user.is_active:
@@ -56,9 +56,7 @@ def login_view(request, template="login.html"):
                 # account disabled or inactive
                 pass
         else:
-            print("password incorrect")
-            # the authentication system was unable to verify the username and password
-            pass
+            return HttpResponse("username/password incorrect")
     else:
         pass
     form = LoginForm()
