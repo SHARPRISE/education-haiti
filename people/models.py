@@ -37,15 +37,6 @@ class User(AbstractUser):
         # Simplest possible answer: Yes, always
         return True
 
-    def set_password(self, password):
-        self.password = sha1(password.encode()).hexdigest()
-        return
-
-    def get_password(self, password):
-        if self.password == sha1(password.encode()).hexdigest():
-            return True
-        return False
-
 User._meta.get_field('email')._unique = True
 
 # Mentee model

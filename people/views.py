@@ -18,20 +18,20 @@ def register(request, template="register.html"):
         form = RegisterForm(request.POST)
         if form.is_valid():
             new_user = User.objects.create_user(
-                # email
-                form.cleaned_data["email"],
                 # username
                 form.cleaned_data["username"],
+                # email
+                form.cleaned_data["email"],
                 )
 
             new_user.set_password(form.cleaned_data["password"])
             # TODO : implementation of email validation
-            new_user.is_active = False
+            new_user.is_active = True
             # rank
             new_user.rank = form.cleaned_data["rank"]
             new_user.save()
 
-            return HttpResponse("register successfully")
+            return HttpResponse("successfully registered")
     else:
         form = RegisterForm()
     return render(request, template, {"form":form})
@@ -45,7 +45,7 @@ def login_view(request, template="login.html"):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        user = get_object_or_404(User, username=username)
+        user = authenticate(username=username, password=password)
         if user is not None:
             # the password verified for the user
             if user.is_active:
@@ -53,10 +53,10 @@ def login_view(request, template="login.html"):
                 # TODO redirect to home page
                 return redirect("index")
             else:
-                # account disabled or inactive
-                pass
+                return HttpResponse("account inactive")
         else:
             return HttpResponse("username/password incorrect")
+            # the authentication system was unable to verify the username and passwor
     else:
         pass
     form = LoginForm()
@@ -64,4 +64,4 @@ def login_view(request, template="login.html"):
 
 def logout_view(request):
     logout(request)
-    return redirect("blog:index")
+    return redirect("index")
