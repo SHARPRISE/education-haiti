@@ -30,8 +30,9 @@ def register(request, template="register.html"):
             # rank
             new_user.rank = form.cleaned_data["rank"]
             new_user.save()
-
-            return HttpResponse("successfully registered")
+            url = "<h2><a href='/people/login'>Login</a></h2>"
+            go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
+            return HttpResponse(go_back + url)
     else:
         form = RegisterForm()
     return render(request, template, {"form":form})
