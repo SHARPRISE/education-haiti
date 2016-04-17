@@ -14,7 +14,7 @@ class User(AbstractUser):
     rank            = models.CharField(max_length=1, choices=RANK_CHOICES, default=RANK_CHOICES[1])
     hidden          = models.BooleanField(default = False)
 
-    REQUIRED_FIELDS = ["email"]
+    REQUIRED_FIELDS = ["email","rank"]
 
     def __str__(self):
         return "%s" % self.email
