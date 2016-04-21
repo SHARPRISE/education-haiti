@@ -37,6 +37,7 @@ def register(request, template="register.html"):
         form = RegisterForm()
     return render(request, template, {"form":form})
 
+#normal login for mentees
 def login_view(request, template="login.html"):
     if request.user.is_authenticated():
         # TODO redirect to home page
@@ -62,6 +63,35 @@ def login_view(request, template="login.html"):
         pass
     form = LoginForm()
     return render(request, template, {"form" : form})
+
+#custom login view for mentors
+#def mentor_login(request):
+#    form = LoginForm(request.POST or None)
+#	next_url = request.GET.get('next')
+#	if form.is_valid():
+#		email = form.cleaned_data['email']
+#		password = form.cleaned_data['password']
+#       graduating or university = ...
+#		user = authenticate(email=email, password=password)
+#		if user is not None:
+#			login(request, user)
+#			if next_url is not None:
+#				return HttpResponseRedirect(next_url)
+#			return HttpResponseRedirect("/admin")
+#	action_url = reverse("login")
+#	title = "Login"
+#	submit_btn = title
+#	submit_btn_class = "btn-success btn-block"
+#	context = {
+#		"form": form,
+#		"action_url": action_url,
+#		"title": title,
+#		"submit_btn": submit_btn,
+#		"submit_btn_class": submit_btn_class,
+#		}
+#	return render(request, "accounts/account_login.html", context)
+# DON'T WORRY ONLY THE LOGIC IS NEEDED, this is just a personal code snippet
+
 
 def logout_view(request):
     logout(request)

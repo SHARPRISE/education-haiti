@@ -39,11 +39,15 @@ class User(AbstractUser):
 
 User._meta.get_field('email')._unique = True
 
-# Mentee model
-class Mentee(models.Model):
+
+# HIGHSCHOOLS = ()
+# UNIVERSITIES = ()
+
+
 
     user        = models.OneToOneField(User)
     picture     = models.ImageField(upload_to="profile_images", blank=True)
+    #graduating = models.DateField() OR highschool = models.CharField(max_lenght=255, choices=HIGHSCHOOLS, required=True)
 
     def __str__(self):
         return "mentee's profile %s" % self.user.email
@@ -55,6 +59,7 @@ class Mentor(models.Model):
     picture     = models.ImageField(upload_to="profile_images", blank=True)
 
     biography   = models.TextField()
+    #graduating  = models.DateField() or universities = models.CharField(max_lenght=255, choices=UNIVERSITIES, required=True)
 
     mentees     = models.ManyToManyField(Mentee)
     hidden      = models.BooleanField(default=False)
