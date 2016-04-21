@@ -61,7 +61,8 @@ def login_view(request, template="login.html"):
     else:
         pass
     form = LoginForm()
-    return render(request, template, {"form" : form})
+    return render(request, template, {"form" : form,
+                                      "title" : 'Login'})
 
 def logout_view(request):
     logout(request)

@@ -13,7 +13,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+          <img class="first-slide" src="{% static 'bootstrap/img/education-haiti.png' %}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Education Haiti</h1>
@@ -26,9 +26,9 @@
           <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+              <h1>Recommended Resources</h1>
+              <p>Useful resources and guides to help you.</p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'resources' %}" role="button">Read</a></p>
             </div>
           </div>
         </div>
@@ -36,9 +36,9 @@
           <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Our Programs.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'programs' %}" role="button">Browse gallery</a></p>
+              <h1>Our Programs</h1>
+              <p>List of offered programs at Education Haiti.</p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'programs' %}" role="button">Browse programs</a></p>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
       </a>
     </div><!-- /.carousel -->
 
-
+<body>
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -63,21 +63,21 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Our Success Stories</h2>
-          <p>A blog featuring our different success stories.</p>
+          <img class="img-circle" src="{% static 'bootstrap/img/icons/png/mortarboard.png' %}" alt="Generic placeholder image" width="140" height="140">
+          <h2>Success Stories</h2>
+          <p>A blog featuring our different success stories</p>
           <p><a class="btn btn-default" href="{% url 'success_blog' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="{% static 'bootstrap/img/icons/png/businessman.png' %}" alt="Generic placeholder image" width="140" height="140">
           <h2>Our Mentors</h2>
-          <p>List of the different mentors here in Education Haiti.</p>
+          <p>List of the different mentors here in Education Haiti</p>
           <p><a class="btn btn-default" href="{% url 'our_mentors' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="{% static 'bootstrap/img/icons/png/Pensils.png' %}" alt="Generic placeholder image" width="140" height="140">
           <h2>Our Programs</h2>
-          <p>List of offered programs at Education Haiti.</p>
+          <p>List of offered programs at Education Haiti</p>
           <p><a class="btn btn-default" href="{% url 'programs' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
@@ -130,5 +130,5 @@
         <a href="{% url 'people:register' %}" class="btn btn-hg btn-primary">Create your account now</a>
       </div>
         </div>
-
+</body>
 {% endblock %}

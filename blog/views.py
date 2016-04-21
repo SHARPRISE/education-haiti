@@ -22,6 +22,18 @@ def index(request):
         })
     )
 
+#Guides page view
+def guides(request):
+    "renders the guides page"
+    assert isinstance(request,HttpRequest)
+    return render(
+        request,
+        'guides.html',
+        context_instance=RequestContext (request,
+        {
+            'title': 'Recommended Resources'
+        })
+    )
 
 #Success Stories page view
 def success_blog(request):
@@ -40,7 +52,6 @@ def success_blog(request):
             'date': datetime.now().date(),
         })
     )
-
 
 #Success Stories slug thingy
 def story(request, slug):

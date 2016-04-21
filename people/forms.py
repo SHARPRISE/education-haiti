@@ -5,8 +5,9 @@ from people.models import User
 
 class LoginForm(forms.ModelForm):
     class Meta:
-        model   = User
-        fields  = ('username', 'password',)
+        model = User
+        fields = ('username', 'password',)
+
         widgets = {
             'username' : forms.TextInput(
                 attrs = {
