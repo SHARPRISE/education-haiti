@@ -15,7 +15,7 @@ def programs(request):
         'programs.html',
         context_instance=RequestContext(request,
         {
-            'title': 'Home',
+            'title': 'Programs',
             'year': datetime.now().year,
             'date': datetime.now().date,
         })
@@ -29,7 +29,21 @@ def about(request):
         'about.html',
         context_instance=RequestContext(request,
         {
-            'title': 'Home',
+            'title': 'About',
+            'year': datetime.now().year,
+            'date': datetime.now().date,
+        })
+    )
+
+def contact(request):
+    "Renders the contact page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'contact.html',
+        context_instance=RequestContext(request,
+        {
+            'title': 'Contact',
             'year': datetime.now().year,
             'date': datetime.now().date,
         })
