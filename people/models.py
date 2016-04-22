@@ -44,7 +44,7 @@ User._meta.get_field('email')._unique = True
 # UNIVERSITIES = ()
 
 
-
+class Mentee(models.Model):
     user        = models.OneToOneField(User)
     picture     = models.ImageField(upload_to="profile_images", blank=True)
     #graduating = models.DateField() OR highschool = models.CharField(max_lenght=255, choices=HIGHSCHOOLS, required=True)
