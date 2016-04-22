@@ -22,19 +22,6 @@ def index(request):
         })
     )
 
-#Guides page view
-def guides(request):
-    "renders the guides page"
-    assert isinstance(request,HttpRequest)
-    return render(
-        request,
-        'guides.html',
-        context_instance=RequestContext (request,
-        {
-            'title': 'Recommended Resources'
-        })
-    )
-
 #Success Stories page view
 def success_blog(request):
     #Gets the success stories
@@ -56,5 +43,18 @@ def success_blog(request):
 #Success Stories slug thingy
 def story(request, slug):
     story = get_object_or_404(SuccessStory, slug=slug)
-    #return the rendered article
+    # return the rendered article
     return render(request, 'success.html', {'story': story})
+
+#Guides page view
+def guides(request):
+    "renders the guides page"
+    assert isinstance(request,HttpRequest)
+    return render(
+        request,
+        'guides.html',
+        context_instance=RequestContext (request,
+        {
+            'title': 'Recommended Resources'
+        })
+    )

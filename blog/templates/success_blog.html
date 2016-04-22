@@ -20,8 +20,8 @@
             <h2 class="blog-post-title">{{story.title}}</h2>
               <h4>{{story.description}}</h4>
             <p class="blog-post-meta">{{story.created}} by <a href="#">{{story.author}}</a></p>
-
             <p> {{story.content|truncatewords:80}} </p>
+              <a href="{{story.get_absolute_url}}">Read More &raquo;</a>
               {% endfor %}
           </div><!-- /.blog-post -->
 
@@ -32,7 +32,8 @@
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>We connect ambitious high school students with mentors
+ to help them get into their dream universities.</p>
           </div>
           <div class="sidebar-module">
             <h4>Archives</h4>
@@ -43,9 +44,8 @@
           <div class="sidebar-module">
             <h4>Elsewhere</h4>
             <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
               <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
+              <li><a href="https://www.facebook.com/educationhaiti/">Facebook</a></li>
             </ol>
           </div>
         </div><!-- /.blog-sidebar -->

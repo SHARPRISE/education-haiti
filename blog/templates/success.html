@@ -1,19 +1,21 @@
 {% extends 'layout_en.html' %}
 
 {% block content %}
-
+<br /><br /><br />
+<div class="container">
 <article>
 <h1>{{story.title}}</h1>
 <p>
     Posted on
-    <time datetime="{{story.created|date:"c"}}">
+    <time datetime="{{story.created|date:'c'}}">
     {{story.created|date}}
-    </time>
+    </time> by <a href="#">{{story.author}}</a>
 </p>
-<p>
+<h4><b>
   {{story.description}}
-</p>
+</b></h4>
     {{story.content|safe}}
 </article>
-
+    <hr /><a class="btn btn-primary" href="{% url 'success_blog' %}"> << Get Back </a></h1>
+</div>
 {% endblock %}
