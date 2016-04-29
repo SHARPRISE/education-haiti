@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.http import HttpRequest
+from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -12,7 +14,7 @@ from hashlib import sha1
 def register(request, template="register.html"):
     if request.user.is_authenticated():
         # TODO home page
-        return redirect("index")
+        return redirect("people:dashboard")
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -41,7 +43,7 @@ def register(request, template="register.html"):
 def login_view(request, template="login.html"):
     if request.user.is_authenticated():
         # TODO redirect to home page
-        return redirect("index")
+        return redirect("people:dashboard")
 
     if request.method == "POST":
         username = request.POST["username"]
@@ -53,7 +55,7 @@ def login_view(request, template="login.html"):
             if user.is_active:
                 login(request, user)
                 # TODO redirect to home page
-                return redirect("index")
+                return redirect("people:dashboard")
             else:
                 return HttpResponse("account inactive")
         else:
@@ -97,3 +99,17 @@ def login_view(request, template="login.html"):
 def logout_view(request):
     logout(request)
     return redirect("index")
+
+def dashboard(request):
+        "Renders the dashboard page"
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'dashboard.html',
+            context_instance=RequestContext(request,
+            {
+                'title': 'Home',
+                'year': datetime.now().year,
+                'date': datetime.now().date,
+            })
+        )

@@ -1,6 +1,7 @@
 from django import forms
 
 from people.models import User
+from people.models import UNIVERSITIES
 # Create your forms here.
 
 class LoginForm(forms.ModelForm):
@@ -60,6 +61,42 @@ class RegisterForm(forms.ModelForm):
                 },
             )
         }
+
+    class MentorRegisterForm(forms.ModelForm):
+        class Meta:
+            model   = User
+            fields  = ('email', 'username', 'password', 'university')
+            password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput())
+            university = forms.MultipleChoiceField(
+                choices = UNIVERSITIES,
+                label = 'Choose your university',
+                initial = '',
+                widget = forms.SelectMultiple(),
+                required = True
+                                        )
+            widgets = {
+                'email' : forms.EmailInput(
+                    attrs = {
+                        'class' : 'form-control',
+                        'placeholder' : 'email',
+                        'required' : True,
+                    }
+                ),
+                'username' : forms.TextInput(
+                    attrs = {
+                        'class' : 'form-control',
+                        'placeholder' : 'username',
+                        'required' : True,
+                    }
+                ),
+                'password' : forms.PasswordInput(
+                    attrs = {
+                        'class' : 'form-control',
+                        'placeholder' : 'password',
+                        'required' : True,
+                    }
+                )
+            }
 
     def clean_password(self):
         password = self.cleaned_data.get('password')

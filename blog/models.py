@@ -12,6 +12,7 @@ class SuccessStory(models.Model):
         content = models.TextField(default="Story content")
         created = models.DateField(auto_now_add=True, verbose_name='Posted on')
         published = models.BooleanField(default=True)
+        article_picture = models.ImageField('img', upload_to='education_haiti/static/img_blog/', blank=True)
 
         def __str__(self):
             return self.title
