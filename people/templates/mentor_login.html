@@ -1,7 +1,7 @@
 {% extends "../../blog/templates/layout_en.html" %}
 {% load staticfiles %}
 
-{% block title %} Log in {% endblock %}
+{% block title %} Mentor Log in {% endblock %}
 {% block link %}
 	<link rel="stylesheet" href="{% static 'people/css/login.css' %}"/>
 {% endblock %}
@@ -13,7 +13,7 @@
 			<div class="col-md-8 col-md-offset-2">
                 <section id="loginForm:">
                 <h4>Education Haiti - {{ title }}</h4>
-			<form class="form-horizontal" id="form" method="POST" action="{% url 'people:login' %}"> {% csrf_token %}
+			<form class="form-horizontal" id="form" method="POST" action="{% url 'people:mentor_login' %}"> {% csrf_token %}
             {% csrf_token %}
                 {{ form.as_p }}
 				{{ form.errors }}
@@ -26,7 +26,7 @@
 			</form>
 
 			<p>
-				New here? <a href="{% url 'people:register' %}">Create an account</a> now!
+				New here? <a href="{% url 'people:mentor_register' %}">Create an account</a> now!
 			</p>
                     </section>
             </div>

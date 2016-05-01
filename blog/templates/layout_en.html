@@ -28,10 +28,8 @@
 ================================================== -->
   <body>
     <div class="navbar-wrapper">
-      <div class="container">
-
         <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
+          <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -44,19 +42,24 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'our_mentors' %}">Our Mentors</a></li>
+                <li><a href="{% url 'our_mentors' %}">Mentors</a></li>
                 <li><a href="{% url 'success_blog' %}">Success Stories</a></li>
-                <li><a href="{% url 'programs' %}">Our Programs</a> </li>
+                <li><a href="{% url 'programs' %}">Programs</a> </li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 {% if request.user.is_authenticated %}
-                  <li><a href="{% url 'people:dashboard' %}">Logged in as <b><i>{{ request.user.username }}</i></b></a></li>
-                  <li><a href="{% url 'people:logout' %}">Log off</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'people:dashboard' %}">Logged in as <b><i>{{ request.user.username }}</i></b></a></li>
+                    <li><a href="{% url 'people:logout' %}">Log off</a></li>
+                  </ul>
+                </li>
                 {% else %}
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="{% url 'people:login' %}">Mentee Login</a></li>
-                      <li><a href="{% url 'people:login' %}">Mentor Login*No difference yet*</a></li>
+                      <li><a href="{% url 'people:mentor_login' %}">Mentor Login*</a></li>
                     </ul>
                   </li>
                 {% endif %}
@@ -67,7 +70,6 @@
 
       </div>
     </div>
-<body>
 
   {% block content %}{% endblock %}
 

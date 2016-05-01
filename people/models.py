@@ -38,9 +38,9 @@ class User(AbstractUser):
         ('B', 'mentee'),
     )
 
-    rank            = models.CharField(max_length=255, choices=RANK_CHOICES, default=RANK_CHOICES[1], null=True,)
+    rank = models.CharField(max_length=255, choices=RANK_CHOICES, default=RANK_CHOICES[1], null=True,)
     university = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
-    hidden          = models.BooleanField(default = False)
+    hidden = models.BooleanField(default = False)
 
     REQUIRED_FIELDS = ["email"]
 

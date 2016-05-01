@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 
-<br /><br /><br />
+<br />
 
  <div class="container">
 
@@ -20,7 +20,7 @@
             <h2 class="blog-post-title">{{story.title}}</h2>
               <h4>{{story.description}}</h4>
             <p class="blog-post-meta">{{story.created}} by <a href="#">{{story.author}}</a></p>
-            <p><img src="../../{{story.article_picture}}" width="80%"></img></p>
+            <p><img src="../../{{story.article_picture}}" width="80%"></p>
             <p></p>
             <p> {{story.content|truncatewords:80}} </p>
               <a href="{{story.get_absolute_url}}">Read More &raquo;</a>

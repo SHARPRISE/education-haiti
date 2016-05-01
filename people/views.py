@@ -4,13 +4,15 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from people.models import User
-from people.forms import LoginForm, RegisterForm
+from people.models import User, Mentor, Mentee
+from people.forms import LoginForm, MentorLoginForm, RegisterForm, MentorRegisterForm
 
 from datetime import datetime
 from hashlib import sha1
 # Create your views here.
 
+
+#normal register for mentees
 def register(request, template="register.html"):
     if request.user.is_authenticated():
         # TODO home page
@@ -37,7 +39,38 @@ def register(request, template="register.html"):
             return HttpResponse(go_back + url)
     else:
         form = RegisterForm()
-    return render(request, template, {"form":form})
+    return render(request, template, {"form":form,
+                                      'title': 'Register'})
+
+
+#register for mentor
+def register_mentor(request, template="register_mentor.html"):
+    if request.user.is_authenticated():
+        return redirect("people:dashboard")
+
+    if request.method == "POST":
+        form = MentorRegisterForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(
+                form.cleaned_data["username"],
+                form.cleaned_data["email"],
+            )
+
+        new_user.set_password(form.cleaned_data["password"])
+        new_user.university = form.cleaned_data["university"]
+        new_user.rank = 'A'
+        new_user.is_active = True
+        new_user.save()
+        new_mentor = Mentor(user=new_user, university=form.cleaned_data["university"])
+        new_mentor.save()
+        url = "<h2><a href='/people/mentor_login'>Login</a></h2>"
+        go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
+        return HttpResponse(go_back + url)
+    else:
+        form = MentorRegisterForm()
+    return render(request, template, {"form":form,
+                                      'title': 'Mentor Register'})
+
 
 #normal login for mentees
 def login_view(request, template="login.html"):
@@ -67,9 +100,36 @@ def login_view(request, template="login.html"):
     return render(request, template, {"form" : form,
                                       "title" : 'Login'})
 
+
 #custom login view for mentors
-#def mentor_login(request):
-#    form = LoginForm(request.POST or None)
+def mentor_login(request, template="mentor_login.html"):
+    if request.user.is_authenticated():
+        # TODO redirect to home page
+        return redirect("people:dashboard")
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        university = request.POST["university"]
+
+        user = authenticate(username=username, password=password, university=university)
+        if user is not None:
+            # the password verified for the user
+            if user.is_active:
+                login(request, user)
+                # TODO redirect to home page
+                return redirect("people:dashboard")
+            else:
+                return HttpResponse("account inactive")
+        else:
+            return HttpResponse("username/password/university incorrect")
+    # the authentication system was unable to verify the username and password
+    else:
+        pass
+    form = MentorLoginForm()
+    return render(request, template, {'form': form,
+                                      'title': 'Mentor Login'})
+
+#    form = MentorLoginForm(request.POST or None)
 #	next_url = request.GET.get('next')
 #	if form.is_valid():
 #		email = form.cleaned_data['email']
@@ -108,7 +168,7 @@ def dashboard(request):
             'dashboard.html',
             context_instance=RequestContext(request,
             {
-                'title': 'Home',
+                'title': 'Dashboard',
                 'year': datetime.now().year,
                 'date': datetime.now().date,
             })
