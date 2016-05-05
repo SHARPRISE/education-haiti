@@ -34,13 +34,15 @@ def register(request, template="register.html"):
             # rank
             new_user.rank = form.cleaned_data["rank"]
             new_user.save()
+            new_mentee = Mentee(user=new_user)
+
             url = "<h2><a href='/people/login'>Login</a></h2>"
             go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
             return HttpResponse(go_back + url)
     else:
         form = RegisterForm()
     return render(request, template, {"form":form,
-                                      'title': 'Register'})
+                                      'title': 'Mentee Register'})
 
 
 #register for mentor
@@ -87,8 +89,18 @@ def login_view(request, template="login.html"):
             # the password verified for the user
             if user.is_active:
                 login(request, user)
+                if user.rank == 'B':
+                    return redirect("people:dashboard")
+                else:
+                    url = "<h2><a href='/people/mentor_login'>Back to Mentor Login &raquo</a></h2>"
+                    bad_rank = "<h1>Wrong Login</h1>" \
+                               "<br />" \
+                               "<h2>You are trying to connect to the Mentee page with a Mentor account." \
+                               "<b>This is not possible!!! </b>" \
+                               "Please go back and login on the Mentor login page.</h2>"
+                    logout(request)
+                    return HttpResponse(bad_rank + url)
                 # TODO redirect to home page
-                return redirect("people:dashboard")
             else:
                 return HttpResponse("account inactive")
         else:
@@ -98,7 +110,7 @@ def login_view(request, template="login.html"):
         pass
     form = LoginForm()
     return render(request, template, {"form" : form,
-                                      "title" : 'Login'})
+                                      "title" : 'Mentee Login'})
 
 
 #custom login view for mentors
@@ -116,8 +128,17 @@ def mentor_login(request, template="mentor_login.html"):
             # the password verified for the user
             if user.is_active:
                 login(request, user)
-                # TODO redirect to home page
-                return redirect("people:dashboard")
+                if user.rank == 'A':
+                    return redirect("people:dashboard")
+                else:
+                    url = "<h2><a href='/people/login'>Back to Mentee Login &raquo</a></h2>"
+                    bad_rank = "<h1>Wrong Login</h1>" \
+                               "<br />" \
+                               "<h2>You are trying to connect to the Mentor page with a Mentee account." \
+                               "<b>This is not possible!!! </b>" \
+                               "Please go back and login on the Mentee login page.</h2>"
+                    logout(request)
+                    return HttpResponse(bad_rank + url)
             else:
                 return HttpResponse("account inactive")
         else:

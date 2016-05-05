@@ -2,20 +2,20 @@ from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_
 from django.template import RequestContext
 from datetime import datetime
 from django.http import HttpRequest
-from people.models import User
+from people.models import Mentor
 
 # Create your views here.
 
 
 def our_mentors(request):
     #Gets the success stories
-    user = User.objects.filter(rank='mentor')
+    mentor = Mentor.objects.all()
     "Renders the our mentors page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'our_mentors.html',
-        {'users': user},
+        {'mentors': mentor},
         context_instance=RequestContext(request,
         {
             'title': 'Our Mentors',

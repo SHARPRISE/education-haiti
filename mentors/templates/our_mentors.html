@@ -3,31 +3,15 @@
 {% block content %}
 {% load staticfiles %}
 
-{% for user in users %}
+{% for mentor in mentors %}
 <div class="tabs">
 <table class="bodydiv" align="center">
 	<tr>
-	<th class="th_contact02">
-</tr>
-
-<div class="tabs">
-<table class="bodydiv" align="center">
-	<tr>
-	<th class="th_contact010">
-	<img width="40%"  class="img-circle" src="#"></th>
-
-	<th class="th_contact010">
-	<img width="40%"  class="img-circle" src="{#"></th>
-</tr>
-<p>&nbsp;</p>
-<tr>	<th class="th_contact02">
-	<i><p class="contact_text"> {{user.first_name}} {{user.last_name}} </p></i>
-</br>
-	<p class="contact_text"> # </p>
-<address class="contact_text">
-{{user.email}}
-</address>
-</th>
+    <th>
+    <h4>{{ mentor.user.email }}</h4>
+    <p> {{ mentor.university }} </p>
+    <p> {{ mentor.biography }}</p>
+    </tr></th>
 {% endfor %}
 </table>
 
