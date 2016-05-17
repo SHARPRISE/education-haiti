@@ -66,7 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -134,6 +135,10 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT)
+MEDIA_URL = '/education_haiti/'
+
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (

@@ -22,6 +22,9 @@ from people import urls as people_urls
 from mentors import urls as our_mentors_urls
 from programs import urls as  programs_urls
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 from blog import views
 
 urlpatterns = [
@@ -32,3 +35,6 @@ urlpatterns = [
     url(r'^our_mentors/', include(our_mentors_urls)),
     url(r'^programs/', include(programs_urls)),
 ]
+
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

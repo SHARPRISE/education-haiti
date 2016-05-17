@@ -4,7 +4,7 @@
     <data-source name="PostgreSQL - education-haiti-local@localhost" uuid="7285a775-b8d7-45d8-b8d8-d2f4aef17200">
       <secret-storage>master_key</secret-storage>
       <first-sync>true</first-sync>
-      <user-name>alexandre</user-name>
+      <user-name>postgres</user-name>
     </data-source>
   </component>
 </project>
