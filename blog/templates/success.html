@@ -11,6 +11,15 @@
     {{story.created|date}}
     </time> by <a href="#">{{story.author}}</a>
 </p>
+    {% if story.article_picture %}
+                      <div class="col-md-5">
+            <p><img class="featurette-image img-responsive center-block" src="{{ story.article_picture.url }}" /></p>
+                      </div><br />
+                      {% else %}
+    <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet.">
+     </div>
+                  {% endif %}
 <h4><b>
   {{story.description}}
 </b></h4>
