@@ -9,11 +9,14 @@ from .models import SuccessStory
 
 #HomePage view
 def index(request):
+    # Gets the success stories
+    story = SuccessStory.objects.filter(published=True)
     "Renders the home page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'index.html',
+        {'stories': story},
         context_instance=RequestContext(request,
         {
             'title': 'Home',
@@ -43,8 +46,9 @@ def success_blog(request):
 #Success Stories slug thingy
 def story(request, slug):
     story = get_object_or_404(SuccessStory, slug=slug)
+    title = story.title
     # return the rendered article
-    return render(request, 'success.html', {'story': story})
+    return render(request, 'success.html', {'story': story, 'title': title})
 
 #Guides page view
 def guides(request):
