@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'education_haiti.wsgi.application'
 #DATABASES = {
 #  'default': {
 #       'ENGINE':'django.db.backends.postgresql',
-#        'NAME': 'education-haiti-local',
+#       'NAME': 'education-haiti-local',
 #       'USER': 'alexandre',
 #       'PASSWORD': 'LexLuminisCC97'
 #   }

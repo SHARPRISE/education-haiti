@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="PostgreSQL - education-haiti-local@localhost" uuid="7285a775-b8d7-45d8-b8d8-d2f4aef17200">
+    <data-source name="PostgreSQL - education-haiti-local@localhost" uuid="2e1d351b-05ea-4952-a8ff-f8f23d016c7b">
       <secret-storage>master_key</secret-storage>
-      <first-sync>true</first-sync>
       <user-name>postgres</user-name>
     </data-source>
   </component>

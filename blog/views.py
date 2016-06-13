@@ -28,7 +28,7 @@ def index(request):
 #Success Stories page view
 def success_blog(request):
     #Gets the success stories
-    story = SuccessStory.objects.filter(published=True)
+    story = SuccessStory.objects.filter(published=True).reverse()
     "Renders the success stories page"
     assert isinstance(request, HttpRequest)
     return render(

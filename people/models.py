@@ -39,7 +39,7 @@ class User(AbstractUser):
     )
 
     rank = models.CharField(max_length=255, choices=RANK_CHOICES, default=RANK_CHOICES[1], null=True,)
-    university = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
+    undergrad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
     hidden = models.BooleanField(default = False)
 
     REQUIRED_FIELDS = ["email"]
@@ -86,10 +86,19 @@ class Mentee(models.Model):
 # Mentor model
 class Mentor(models.Model):
     user        = models.OneToOneField(User)
-    picture     = models.ImageField(upload_to="profile_images", blank=True)
-    biography   = models.TextField()
+    picture     = models.ImageField(upload_to="mentor_profile_images", blank=True)
+    biography   = models.TextField(null=True)
     #graduating  = models.DateField()
-    university = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
+    undergrad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
+    grad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
+    majors = models.CharField(max_length=100, default='Your major(s), please separate each major with a comma')
+    interests = models.CharField(max_length=150, default='Your interests, please separate each one with a comma')
+    residency = models.CharField(max_length=255, default='Your state/city of residency')
+    phone = models.CharField(max_length=255, default='Your phone number')
+    current_status = models.CharField(max_length=255, default='Your current status/work')
+    school_haiti = models.CharField(max_length=255, default='Your school in Haiti')
+    first_name = models.CharField(max_length=100, default='Your first name')
+    last_name = models.CharField(max_length=100, default='Your last name')
     mentees     = models.ManyToManyField(Mentee)
     hidden      = models.BooleanField(default=False)
 

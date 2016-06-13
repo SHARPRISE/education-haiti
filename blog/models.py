@@ -19,7 +19,7 @@ class SuccessStory(models.Model):
 
 
         class Meta:
-                ordering = ['created']
+                ordering = ['created'].reverse()
 
         def __unicode__(self):
                 return u'%s' % self.title

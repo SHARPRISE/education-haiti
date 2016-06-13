@@ -1,15 +1,12 @@
 {% extends "../../blog/templates/layout_en.html" %}
 {% block content %}
 
-{% if request.user.is_authenticated %}
 <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Your Mentor</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
+            <li><a href="{% url 'people:mentor_profile' %}">Your Mentor Profile</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
@@ -24,7 +21,14 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Welcome {{ request.user.username }}, what's up?</h1>
+            {% if request.user.is_authenticated %}
+    {% if request.user.mentor.majors == 'Your major(s), please separate each major with a comma' %}
+<div class="alert alert-danger" role="alert">You haven't completed your profile yet, please do it right now by
+  <a href="{% url 'people:mentor_profile' %}" class="alert-link">clicking here</a>, an incomplete profile isn't a good thing to have..
+</div>
+        {%  else %}
+                  <h1 class="page-header">Welcome {{ request.user.mentor.first_name }}, what's up?</h1>
+        {% endif %}
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">

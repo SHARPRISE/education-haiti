@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from people.models import User, Mentor, Mentee
-from people.forms import LoginForm, MentorLoginForm, RegisterForm, MentorRegisterForm
+from people.forms import LoginForm, MentorLoginForm, RegisterForm, MentorRegisterForm, ChangeMentorProfile
 
 from datetime import datetime
 from hashlib import sha1
@@ -59,11 +59,11 @@ def register_mentor(request, template="register_mentor.html"):
             )
 
         new_user.set_password(form.cleaned_data["password"])
-        new_user.university = form.cleaned_data["university"]
+        new_user.undergrad_college = form.cleaned_data["undergrad_college"]
         new_user.rank = 'A'
         new_user.is_active = True
         new_user.save()
-        new_mentor = Mentor(user=new_user, university=form.cleaned_data["university"])
+        new_mentor = Mentor(user=new_user, undergrad_college=form.cleaned_data["undergrad_college"])
         new_mentor.save()
         url = "<h2><a href='/people/mentor_login'>Login</a></h2>"
         go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
@@ -121,9 +121,9 @@ def mentor_login(request, template="mentor_login.html"):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        university = request.POST["university"]
+        undergrad_college = request.POST["undergrad_college"]
 
-        user = authenticate(username=username, password=password, university=university)
+        user = authenticate(username=username, password=password, undergrad_college=undergrad_college)
         if user is not None:
             # the password verified for the user
             if user.is_active:
@@ -176,6 +176,28 @@ def mentor_login(request, template="mentor_login.html"):
 #	return render(request, "accounts/account_login.html", context)
 # DON'T WORRY ONLY THE LOGIC IS NEEDED, this is just a personal code snippet
 
+def mentor_update(request, template='mentor_profile.html'):
+    if request.user.is_authenticated():
+        form = ChangeMentorProfile(request.POST or None)
+        online_user = request.user
+        mentor = online_user.mentor
+        if form.is_valid():
+            mentor.biography = form.cleaned_data['biography']
+            mentor.grad_college = form.cleaned_data['grad_college']
+            mentor.majors = form.cleaned_data['majors']
+            mentor.interests = form.cleaned_data['interests']
+            mentor.residency = form.cleaned_data['residency']
+            mentor.phone = form.cleaned_data['phone']
+            mentor.current_status = form.cleaned_data['current_status']
+            mentor.school_haiti = form.cleaned_data['school_haiti']
+            mentor.first_name = form.cleaned_data['first_name']
+            mentor.last_name = form.cleaned_data['last_name']
+            mentor.picture = form.cleaned_data['picture']
+            mentor.save()
+        context = {
+            'form': form
+        }
+        return render(request, template, context)
 
 def logout_view(request):
     logout(request)
@@ -194,3 +216,18 @@ def dashboard(request):
                 'date': datetime.now().date,
             })
         )
+
+def mentor_profile(request):
+    "renders the dashboard page"
+    assert isinstance(request, HttpRequest)
+    form = ChangeMentorProfile()
+    return render(
+        request,
+        'mentor_profile.html',
+        context_instance=RequestContext(request,
+        {
+            'title': 'Mentor Profile',
+            'form': form,
+        })
+
+    )

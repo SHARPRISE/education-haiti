@@ -1,7 +1,7 @@
 from django import forms
 
 from people.models import User
-from people.models import UNIVERSITIES
+from people.models import UNIVERSITIES, Mentor
 # Create your forms here.
 
 class LoginForm(forms.ModelForm):
@@ -29,8 +29,8 @@ class LoginForm(forms.ModelForm):
 class MentorLoginForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'password', 'university')
-        university = forms.MultipleChoiceField(
+        fields = ('username', 'password', 'undergrad_college')
+        undergrad_college = forms.MultipleChoiceField(
             choices=UNIVERSITIES,
             label='Choose your university',
             initial='',
@@ -95,9 +95,9 @@ class RegisterForm(forms.ModelForm):
 class MentorRegisterForm(forms.ModelForm):
     class Meta:
         model   = User
-        fields  = ('email', 'username', 'password', 'university')
+        fields  = ('email', 'username', 'password', 'undergrad_college')
         password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput())
-        university = forms.MultipleChoiceField(
+        undergrad_college = forms.MultipleChoiceField(
             choices=UNIVERSITIES,
             label = 'Choose your university',
             initial = '',
@@ -145,3 +145,12 @@ class MentorRegisterForm(forms.ModelForm):
             raise forms.ValidationError("This email is already in use.")
         except User.DoesNotExist:
             return email
+
+class ChangeMentorProfile(forms.ModelForm):
+    """Change mentor infos"""
+
+    class Meta:
+        model = Mentor
+        fields = ('biography','grad_college','majors','interests','residency','phone','current_status','school_haiti','first_name',
+                  'last_name','picture')
+
