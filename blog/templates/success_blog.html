@@ -15,8 +15,9 @@
 
         <div class="col-sm-8 blog-main">
 
-          <div class="blog-post">
+
               {% for story in stories %}
+                            <div class="blog-post">
             <h2 class="blog-post-title">{{story.title}}</h2>
               <h4>{{story.description}}</h4>
             <p class="blog-post-meta">{{story.created}} by <a href="#">{{story.author}}</a></p>
@@ -32,8 +33,9 @@
             <p></p>
             <p> {{story.content|truncatewords:80}} </p>
               <a href="{{story.get_absolute_url}}">Read More &raquo;</a>
-              {% endfor %}
           </div><!-- /.blog-post -->
+              {% endfor %}
+
 
             <br />
 

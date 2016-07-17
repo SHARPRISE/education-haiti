@@ -1,14 +1,15 @@
 {% extends "../../blog/templates/layout_en.html" %}
 {% block content %}
+    {% load staticfiles %}
 
     {% if request.user.is_authenticated %}
  <div class="container">
 <div class="blog-post">
       <div class="blog-header">
         <h1 class="blog-title">Hello {{ request.user.mentor.first_name }} {{ request.user.mentor.last_name }}</h1>
-        <p> Update your profile info here. </p>
+        <p> Add a new success story </p>
           <br />
-          <form class="form-horizontal" id="form" method="POST" action="{% url 'people:mentor_update' %}"> {% csrf_token %}
+          <form class="form-horizontal" id="form" method="POST" action="{% url 'people:add_story_form' %}"> {% csrf_token %}
             {% csrf_token %}
                 {{ form.as_p }}
 				{{ form.errors }}
@@ -17,14 +18,13 @@
 						{{ field.error }}
 					{% endif %}
 				{% endfor %}
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Add Story</button>
 			</form>
 
         </div>
         </div>
-        </div>
 <br />
+        </div>
+
     {% endif %}
-
-
 {% endblock %}

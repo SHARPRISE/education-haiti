@@ -4,8 +4,10 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from people.models import User, Mentor, Mentee
-from people.forms import LoginForm, MentorLoginForm, RegisterForm, MentorRegisterForm, ChangeMentorProfile
+from people.models import User, Mentor
+from blog.models import SuccessStory
+from people.forms import MentorLoginForm, MentorRegisterForm, MentorUpdateForm
+from blog.forms import AddStoryForm
 
 from datetime import datetime
 from hashlib import sha1
@@ -13,36 +15,36 @@ from hashlib import sha1
 
 
 #normal register for mentees
-def register(request, template="register.html"):
-    if request.user.is_authenticated():
-        # TODO home page
-        return redirect("people:dashboard")
+#def register(request, template="register.html"):
+#    if request.user.is_authenticated():
+#        # TODO home page
+#        return redirect("people:dashboard")
 
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            new_user = User.objects.create_user(
-                # username
-                form.cleaned_data["username"],
-                # email
-                form.cleaned_data["email"],
-                )
+#    if request.method == "POST":
+#        form = RegisterForm(request.POST)
+##        if form.is_valid():
+ #           new_user = User.objects.create_user(
+ #               # username
+ #               form.cleaned_data["username"],
+ #               # email
+ #               form.cleaned_data["email"],
+ #               )
 
-            new_user.set_password(form.cleaned_data["password"])
-            # TODO : implementation of email validation
-            new_user.is_active = True
+   #         new_user.set_password(form.cleaned_data["password"])
+    #        # TODO : implementation of email validation
+   #         new_user.is_active = True
             # rank
-            new_user.rank = form.cleaned_data["rank"]
-            new_user.save()
-            new_mentee = Mentee(user=new_user)
+  #          new_user.rank = form.cleaned_data["rank"]
+   #         new_user.save()
+  #          new_mentee = Mentee(user=new_user)
 
-            url = "<h2><a href='/people/login'>Login</a></h2>"
-            go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
-            return HttpResponse(go_back + url)
-    else:
-        form = RegisterForm()
-    return render(request, template, {"form":form,
-                                      'title': 'Mentee Register'})
+   #         url = "<h2><a href='/people/login'>Login</a></h2>"
+    #        go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
+    #        return HttpResponse(go_back + url)
+    #else:
+    #    form = RegisterForm()
+   # return render(request, template, {"form":form,
+    #                                  'title': 'Mentee Register'})
 
 
 #register for mentor
@@ -75,7 +77,7 @@ def register_mentor(request, template="register_mentor.html"):
 
 
 #normal login for mentees
-def login_view(request, template="login.html"):
+"""def login_view(request, template="login.html"):
     if request.user.is_authenticated():
         # TODO redirect to home page
         return redirect("people:dashboard")
@@ -110,7 +112,7 @@ def login_view(request, template="login.html"):
         pass
     form = LoginForm()
     return render(request, template, {"form" : form,
-                                      "title" : 'Mentee Login'})
+                                      "title" : 'Mentee Login'})"""
 
 
 #custom login view for mentors
@@ -178,7 +180,7 @@ def mentor_login(request, template="mentor_login.html"):
 
 def mentor_update(request, template='mentor_profile.html'):
     if request.user.is_authenticated():
-        form = ChangeMentorProfile(request.POST or None)
+        form = MentorUpdateForm(request.POST or None)
         online_user = request.user
         mentor = online_user.mentor
         if form.is_valid():
@@ -198,6 +200,28 @@ def mentor_update(request, template='mentor_profile.html'):
             'form': form
         }
         return render(request, template, context)
+
+
+def add_story(request, template='add_story.html'):
+    form = AddStoryForm(request.POST or None)
+    online_user = request.user
+    mentor_first_name = online_user.mentor.first_name
+    mentor_last_name = online_user.mentor.last_name
+    if form.is_valid():
+        new_story = SuccessStory(author=mentor_first_name + ' ' + mentor_last_name)
+        new_story.title = form.cleaned_data['title']
+        new_story.description = form.cleaned_data['description']
+        new_story.content = form.cleaned_data['content']
+        new_story.slug = form.cleaned_data['slug']
+        new_story.published = form.cleaned_data['published']
+        new_story.created = datetime.now().date()
+        new_story.article_picture = form.cleaned_data['article_picture']
+        new_story.save()
+    context = {
+        'form' : form
+    }
+    return render(request, template, context)
+
 
 def logout_view(request):
     logout(request)
@@ -220,7 +244,7 @@ def dashboard(request):
 def mentor_profile(request):
     "renders the dashboard page"
     assert isinstance(request, HttpRequest)
-    form = ChangeMentorProfile()
+    form = MentorUpdateForm()
     return render(
         request,
         'mentor_profile.html',
@@ -230,4 +254,18 @@ def mentor_profile(request):
             'form': form,
         })
 
+    )
+
+def new_story(request):
+    'renders the new story page'
+    assert isinstance(request,HttpRequest)
+    form = AddStoryForm()
+    return render(
+        request,
+        'add_story.html',
+        context_instance=RequestContext(request,
+                                        {
+                                            'title': 'New Success Story',
+                                            'form' : form,
+                                        })
     )

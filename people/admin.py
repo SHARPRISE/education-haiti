@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from people.models import User, Mentor, Mentee
+from people.models import User, Mentor
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
@@ -15,9 +15,7 @@ class MentorAdmin(admin.ModelAdmin):
     fields          = ('user','first_name','last_name','biography','undergrad_college','grad_college','majors','interests','residency',
                        'phone','current_status','school_haiti', 'picture')
 
-class MenteeAdmin(admin.ModelAdmin):
-    fields          = ('user',)
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Mentor, MentorAdmin)
-admin.site.register(Mentee, MenteeAdmin)
+

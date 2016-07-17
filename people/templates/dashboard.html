@@ -1,60 +1,48 @@
 {% extends "../../blog/templates/layout_en.html" %}
 {% block content %}
+    {% load staticfiles %}
 
 <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="{% url 'people:mentor_profile' %}">Your Mentor Profile</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            {% if request.user.is_superuser %}
-            <li><a href="/admin/">Django Admin Page</a></li>
-            {% else %}
-            <li><a href=""> You are not Admin. </a></li>
-            {% endif %}
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            {% if request.user.is_authenticated %}
+      <div class="main">
+
+          <div class="row placeholders">
+                    {% if request.user.is_authenticated %}
     {% if request.user.mentor.majors == 'Your major(s), please separate each major with a comma' %}
 <div class="alert alert-danger" role="alert">You haven't completed your profile yet, please do it right now by
   <a href="{% url 'people:mentor_profile' %}" class="alert-link">clicking here</a>, an incomplete profile isn't a good thing to have..
 </div>
         {%  else %}
                   <h1 class="page-header">Welcome {{ request.user.mentor.first_name }}, what's up?</h1>
+                  <h6 class="sub-header">@{{ request.user.username }} --- <i>{{ request.user.email }}</i></h6><br />
+
         {% endif %}
 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+            <div class="col-sm-3 placeholder">
+              <img src="{% static 'bootstrap/img/icons/png/mortarboard.png' %}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4><p><a class="btn btn-lg btn-primary" href="{% url 'people:new_story' %}" role="button">New Success Story</a></p></h4>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+            <div class="col-sm-3 placeholder">
+              <img src="{% static 'bootstrap/img/icons/png/Pensils.png' %}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4><p><a class="btn btn-lg btn-info" href="#" role="button">New Resources</a></p></h4>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <div class="col-sm-3 placeholder">
+                  {%  if request.user.is_authenticated %}
+                      {% if request.user.mentor.picture %}
+              <img src="{{ request.user.mentor.picture.url }}" width="100" height="100" class="img-circle" alt="Profile Picture">
+                  {% else %}
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="No Profile Picture Yet">
+                    {% endif %}{% endif %}
+              <h4><p><a class="btn btn-lg btn-danger" href="{% url 'people:mentor_profile' %}" role="button">Modify Your Profile</a></p></h4>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+                        <div class="col-sm-3 placeholder">
+              <img src="{% static 'bootstrap/img/login/logoff.png' %}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4><p><a class="btn btn-lg btn-primary" href="{% url 'people:logout' %}" role="button">Log Off</a></p></h4>
             </div>
-          </div>
+      </div>
+        <div class="col-sm-9 col-sm-offset-2 col-md-10 col-md-offset-1 main">
 
-          <h2 class="sub-header">@{{ request.user.username }}</h2>
-          <i><h4 class="sub-header">{{ request.user.email }}</h4></i>
+
+
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>

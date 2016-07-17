@@ -29,6 +29,8 @@ UNIVERSITIES = (
     ('22', 'Massasoit CC'),
     ('23', 'University of Massachusetts'),
     ('24', 'University of South Florida'),
+    ('25', 'Princeton University'),
+    ('26', '------------------------'),
 )
 
 # User model
@@ -75,13 +77,13 @@ User._meta.get_field('email')._unique = True
 # HIGHSCHOOLS = ()
 
 
-class Mentee(models.Model):
-    user        = models.OneToOneField(User)
-    picture     = models.ImageField(upload_to="profile_images", blank=True)
-    #graduating = models.DateField() OR highschool = models.CharField(max_lenght=255, choices=HIGHSCHOOLS, required=True)
+#class Mentee(models.Model):
+ #   user        = models.OneToOneField(User)
+ #   picture     = models.ImageField(upload_to="profile_images", blank=True)
+ #   #graduating = models.DateField() OR highschool = models.CharField(max_lenght=255, choices=HIGHSCHOOLS, required=True)
 
-    def __str__(self):
-        return "mentee's profile %s" % self.user.email
+  #  def __str__(self):
+  #      return "mentee's profile %s" % self.user.email
 
 # Mentor model
 class Mentor(models.Model):
@@ -99,7 +101,7 @@ class Mentor(models.Model):
     school_haiti = models.CharField(max_length=255, default='Your school in Haiti')
     first_name = models.CharField(max_length=100, default='Your first name')
     last_name = models.CharField(max_length=100, default='Your last name')
-    mentees     = models.ManyToManyField(Mentee)
+    #mentees     = models.ManyToManyField(Mentee)
     hidden      = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ["university"]

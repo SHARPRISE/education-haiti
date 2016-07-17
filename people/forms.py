@@ -4,7 +4,7 @@ from people.models import User
 from people.models import UNIVERSITIES, Mentor
 # Create your forms here.
 
-class LoginForm(forms.ModelForm):
+"""class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
@@ -24,7 +24,7 @@ class LoginForm(forms.ModelForm):
                     'required' : True,
                 }
             )
-        }
+        }"""
 
 class MentorLoginForm(forms.ModelForm):
     class Meta:
@@ -55,7 +55,7 @@ class MentorLoginForm(forms.ModelForm):
         }
 
 
-class RegisterForm(forms.ModelForm):
+"""class RegisterForm(forms.ModelForm):
     class Meta:
         model   = User
         fields  = ('email', 'username', 'password', 'rank')
@@ -89,8 +89,29 @@ class RegisterForm(forms.ModelForm):
                     'placeholder' : "Mentor or mentee"
                 },
             )
-        }
-
+        }"""
+class MentorUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Mentor
+        fields = ('biography','grad_college','majors','interests','residency','phone','current_status','school_haiti','first_name',
+                  'last_name','picture')
+        biography = forms.TextInput()
+        grad_college = forms.MultipleChoiceField(
+            choices=UNIVERSITIES,
+            label='Choose your Graduate College',
+            initial='',
+            widget=forms.SelectMultiple(),
+            required=True
+        )
+        majors = forms.CharField(label="Seperate each major with a comma, ex: Electrical Engineering, Economy")
+        interests = forms.CharField(label="Separate each interest with a comma, ex: Education, Computer Science")
+        residency = forms.CharField()
+        phone = forms.CharField()
+        current_status = forms.CharField(label='Your current status, ex: Analyst, CEO, etc')
+        school_haiti = forms.CharField(label='Your High School back in Haiti')
+        first_name = forms.CharField(label='Your First and Middle Name(s)')
+        last_name = forms.CharField(label='Your Last Name')
+        picture = forms.ImageField(label='Upload your profile picture')
 
 class MentorRegisterForm(forms.ModelForm):
     class Meta:
@@ -145,12 +166,3 @@ class MentorRegisterForm(forms.ModelForm):
             raise forms.ValidationError("This email is already in use.")
         except User.DoesNotExist:
             return email
-
-class ChangeMentorProfile(forms.ModelForm):
-    """Change mentor infos"""
-
-    class Meta:
-        model = Mentor
-        fields = ('biography','grad_college','majors','interests','residency','phone','current_status','school_haiti','first_name',
-                  'last_name','picture')
-

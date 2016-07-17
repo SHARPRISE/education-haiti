@@ -17,8 +17,8 @@
           <div class="container">
             <div class="carousel-caption">
               <h1></h1>
-              <p>Almost Done :D</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'people:register' %}" role="button">Sign up today</a></p>
+              <p>Welcome on Education Haiti!</p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'success_blog' %}" role="button">Success Stories</a></p>
             </div>
           </div>
         </div>
@@ -84,9 +84,9 @@
 
 
       <!-- START THE FEATURETTES -->
-              {% for story in stories|slice:"2" %}
-<hr class="featurette-divider">
 
+<hr class="featurette-divider">
+{% for story in stories|slice:"2" %}
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">{{story.title}} <span class="text-muted">{{story.description}}</span></h2>
@@ -107,10 +107,6 @@
       <hr class="featurette-divider"><br /></div>
 
       <!-- /END THE FEATURETTES -->
-
-            <div class="row" style="padding-top:4em;padding-bottom:4em;text-align:center;">
-        <a href="{% url 'people:register' %}" class="btn btn-hg btn-primary">Create your account now</a>
-      </div>
-        </div>
+</div>
 </body>
 {% endblock %}
