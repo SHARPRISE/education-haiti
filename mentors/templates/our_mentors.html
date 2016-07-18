@@ -4,7 +4,9 @@
 {% load staticfiles %}
 
 
+      <div class="row">
 
+        <div class="col-md-9 blog-main">
 <div class="blog-main">
 
 {% for mentor in mentors %}
@@ -14,7 +16,7 @@
                 -- Undergraduate college: <b>{{ mentor.get_undergrad_college_display }}</b>  -- Graduate college: <b>{{ mentor.get_grad_college_display }}</b> </p>
                   {% if mentor.picture %}
                       <div class="col-md-5">
-            <p><img class="col-md-7" src="{{ mentor.picture.url }}" /></p>
+            <p><img class="featurette-image img-responsive center-block" src="{{ mentor.picture.url }}" /></p>
                       </div><br />
                       {% else %}
     <div class="col-md-5">
@@ -35,6 +37,7 @@
 
 
 	<p>&nbsp;</p>
+</div>
 </div>
     </div>
 {% endblock %}
