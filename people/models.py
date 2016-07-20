@@ -30,7 +30,9 @@ UNIVERSITIES = (
     ('23', 'University of Massachusetts'),
     ('24', 'University of South Florida'),
     ('25', 'Princeton University'),
-    ('26', '------------------------'),
+    ('26', 'Montclair State University'),
+    ('27', 'University of Georgia'),
+    ('28', '------------------------'),
 )
 
 # User model

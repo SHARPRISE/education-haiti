@@ -48,7 +48,7 @@ from hashlib import sha1
 
 
 #register for mentor
-def register_mentor(request, template="register_mentor.html"):
+'''def register_mentor(request, template="register_mentor.html"):
     if request.user.is_authenticated():
         return redirect("people:dashboard")
 
@@ -73,7 +73,7 @@ def register_mentor(request, template="register_mentor.html"):
     else:
         form = MentorRegisterForm()
     return render(request, template, {"form":form,
-                                      'title': 'Mentor Register'})
+                                      'title': 'Mentor Register'})'''
 
 
 #normal login for mentees
