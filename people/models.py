@@ -110,3 +110,15 @@ class Mentor(models.Model):
 
     def __str__(self):
         return "mentor's profile %s" % self.user.email
+
+
+# To-do App. user is a Mentor, has an emission date, has an expiration date, has a subject.
+class ToDo(models.Model):
+    author     = models.OneToOneField(Mentor)
+    subject    = models.TextField()
+    emitted    = models.DateField(auto_now_add=True)
+    expires    = models.DateField()
+    completion = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (self.subject + 'by' + self.Mentor.user.name)

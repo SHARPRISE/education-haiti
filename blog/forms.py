@@ -1,6 +1,6 @@
 from django import forms
 
-from models import SuccessStory
+from .models import SuccessStory
 
 
 class AddStoryForm(forms.ModelForm):
