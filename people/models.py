@@ -76,35 +76,34 @@ class User(AbstractUser):
 User._meta.get_field('email')._unique = True
 
 
-# HIGHSCHOOLS = ()
-
-
 #class Mentee(models.Model):
- #   user        = models.OneToOneField(User)
- #   picture     = models.ImageField(upload_to="profile_images", blank=True)
- #   #graduating = models.DateField() OR highschool = models.CharField(max_lenght=255, choices=HIGHSCHOOLS, required=True)
+#    user        = models.OneToOneField(User)
+#    picture     = models.ImageField(upload_to="profile_images", blank=True)
+#    #graduating = models.DateField() OR highschool = models.CharField(max_lenght=255, choices=HIGHSCHOOLS, required=True)
 
-  #  def __str__(self):
-  #      return "mentee's profile %s" % self.user.email
+#    def __str__(self):
+#      return "mentee's profile %s" % self.user.email
+
 
 # Mentor model
 class Mentor(models.Model):
-    user        = models.OneToOneField(User)
-    picture     = models.ImageField(upload_to="mentor_profile_images", blank=True)
-    biography   = models.TextField(null=True)
-    #graduating  = models.DateField()
-    undergrad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
-    grad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University')
-    majors = models.CharField(max_length=100, default='Your major(s), please separate each major with a comma')
-    interests = models.CharField(max_length=150, default='Your interests, please separate each one with a comma')
-    residency = models.CharField(max_length=255, default='Your state/city of residency')
-    phone = models.CharField(max_length=255, default='Your phone number')
-    current_status = models.CharField(max_length=255, default='Your current status/work')
-    school_haiti = models.CharField(max_length=255, default='Your school in Haiti')
-    first_name = models.CharField(max_length=100, default='Your first name')
-    last_name = models.CharField(max_length=100, default='Your last name')
-    #mentees     = models.ManyToManyField(Mentee)
-    hidden      = models.BooleanField(default=False)
+    user = models.OneToOneField(User)
+    picture = models.ImageField(upload_to="mentor_profile_images", blank=True)
+    biography = models.TextField(null=True)
+#    graduating  = models.DateField()
+    undergrad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University', help_text='Your Undergraduate College')
+    grad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University', help_text='Your Graduate College')
+    majors = models.CharField(max_length=100, help_text='Your major(s), please separate each major with a comma')
+    interests = models.CharField(max_length=150, help_text='Your interests, please separate each one with a comma')
+    residency = models.CharField(max_length=255, help_text='Your state/city of residency')
+    phone = models.CharField(max_length=255, default='+(000)0000000', help_text='Your phone number')
+    current_status = models.CharField(max_length=255, default='work work work work work', help_text='Your current status/work')
+    school_haiti = models.CharField(max_length=255, default='Institution Alea Touare', help_text='Your school in Haiti')
+    first_name = models.CharField(max_length=100, help_text='Your first name')
+    last_name = models.CharField(max_length=100, help_text='Your last name')
+#   mentees = models.ManyToManyField(Mentee)
+#    todos = models.ManyToManyField(ToDo)
+    hidden = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ["university"]
 
@@ -114,11 +113,11 @@ class Mentor(models.Model):
 
 # To-do App. user is a Mentor, has an emission date, has an expiration date, has a subject.
 class ToDo(models.Model):
-    author     = models.OneToOneField(Mentor)
-    subject    = models.TextField()
-    emitted    = models.DateField(auto_now_add=True)
-    expires    = models.DateField()
+    author = models.CharField(max_length=25, default='New Author')
+    subject = models.CharField(max_length=200, default='New ToDo', help_text='What is this ToDo about')
+    emitted = models.DateField(auto_now_add=True)
+    expires = models.DateField(help_text='Should be enterd in the YYYY-MM-DD format. Ex: 2016-10-28')
     completion = models.BooleanField(default=False)
 
     def __str__(self):
-        return (self.subject + 'by' + self.Mentor.user.name)
+        return self.subject + 'by' + self.Mentor.user.name

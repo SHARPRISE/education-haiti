@@ -4,115 +4,14 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from people.models import User, Mentor
+from people.models import User, Mentor, ToDo
 from blog.models import SuccessStory
-from people.forms import MentorLoginForm, MentorRegisterForm, MentorUpdateForm
+from people.forms import MentorLoginForm, MentorRegisterForm, MentorUpdateForm, ToDoForm, ToDoCompletionForm
 from blog.forms import AddStoryForm
 
 from datetime import datetime
 from hashlib import sha1
 # Create your views here.
-
-
-#normal register for mentees
-#def register(request, template="register.html"):
-#    if request.user.is_authenticated():
-#        # TODO home page
-#        return redirect("people:dashboard")
-
-#    if request.method == "POST":
-#        form = RegisterForm(request.POST)
-##        if form.is_valid():
- #           new_user = User.objects.create_user(
- #               # username
- #               form.cleaned_data["username"],
- #               # email
- #               form.cleaned_data["email"],
- #               )
-
-   #         new_user.set_password(form.cleaned_data["password"])
-    #        # TODO : implementation of email validation
-   #         new_user.is_active = True
-            # rank
-  #          new_user.rank = form.cleaned_data["rank"]
-   #         new_user.save()
-  #          new_mentee = Mentee(user=new_user)
-
-   #         url = "<h2><a href='/people/login'>Login</a></h2>"
-    #        go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
-    #        return HttpResponse(go_back + url)
-    #else:
-    #    form = RegisterForm()
-   # return render(request, template, {"form":form,
-    #                                  'title': 'Mentee Register'})
-
-
-#register for mentor
-'''def register_mentor(request, template="register_mentor.html"):
-    if request.user.is_authenticated():
-        return redirect("people:dashboard")
-
-    if request.method == "POST":
-        form = MentorRegisterForm(request.POST)
-        if form.is_valid():
-            new_user = User.objects.create_user(
-                form.cleaned_data["username"],
-                form.cleaned_data["email"],
-            )
-
-        new_user.set_password(form.cleaned_data["password"])
-        new_user.undergrad_college = form.cleaned_data["undergrad_college"]
-        new_user.rank = 'A'
-        new_user.is_active = True
-        new_user.save()
-        new_mentor = Mentor(user=new_user, undergrad_college=form.cleaned_data["undergrad_college"])
-        new_mentor.save()
-        url = "<h2><a href='/people/mentor_login'>Login</a></h2>"
-        go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
-        return HttpResponse(go_back + url)
-    else:
-        form = MentorRegisterForm()
-    return render(request, template, {"form":form,
-                                      'title': 'Mentor Register'})'''
-
-
-#normal login for mentees
-"""def login_view(request, template="login.html"):
-    if request.user.is_authenticated():
-        # TODO redirect to home page
-        return redirect("people:dashboard")
-
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            # the password verified for the user
-            if user.is_active:
-                login(request, user)
-                if user.rank == 'B':
-                    return redirect("people:dashboard")
-                else:
-                    url = "<h2><a href='/people/mentor_login'>Back to Mentor Login &raquo</a></h2>"
-                    bad_rank = "<h1>Wrong Login</h1>" \
-                               "<br />" \
-                               "<h2>You are trying to connect to the Mentee page with a Mentor account." \
-                               "<b>This is not possible!!! </b>" \
-                               "Please go back and login on the Mentor login page.</h2>"
-                    logout(request)
-                    return HttpResponse(bad_rank + url)
-                # TODO redirect to home page
-            else:
-                return HttpResponse("account inactive")
-        else:
-            return HttpResponse("username/password incorrect")
-            # the authentication system was unable to verify the username and passwor
-    else:
-        pass
-    form = LoginForm()
-    return render(request, template, {"form" : form,
-                                      "title" : 'Mentee Login'})"""
 
 
 #custom login view for mentors
@@ -152,31 +51,6 @@ def mentor_login(request, template="mentor_login.html"):
     return render(request, template, {'form': form,
                                       'title': 'Mentor Login'})
 
-#    form = MentorLoginForm(request.POST or None)
-#	next_url = request.GET.get('next')
-#	if form.is_valid():
-#		email = form.cleaned_data['email']
-#		password = form.cleaned_data['password']
-#       graduating or university = ...
-#		user = authenticate(email=email, password=password)
-#		if user is not None:
-#			login(request, user)
-#			if next_url is not None:
-#				return HttpResponseRedirect(next_url)
-#			return HttpResponseRedirect("/admin")
-#	action_url = reverse("login")
-#	title = "Login"
-#	submit_btn = title
-#	submit_btn_class = "btn-success btn-block"
-#	context = {
-#		"form": form,
-#		"action_url": action_url,
-#		"title": title,
-#		"submit_btn": submit_btn,
-#		"submit_btn_class": submit_btn_class,
-#		}
-#	return render(request, "accounts/account_login.html", context)
-# DON'T WORRY ONLY THE LOGIC IS NEEDED, this is just a personal code snippet
 
 def mentor_update(request, template='mentor_profile.html'):
     if request.user.is_authenticated():
@@ -196,10 +70,51 @@ def mentor_update(request, template='mentor_profile.html'):
             mentor.last_name = form.cleaned_data['last_name']
             mentor.picture = form.cleaned_data['picture']
             mentor.save()
+            return redirect("people:dashboard")
         context = {
             'form': form
         }
         return render(request, template, context)
+
+
+def todo_completion(request, template='dashboard.html'):
+    if request.user.is_authenticated():
+        form = ToDoCompletionForm(request.POST or None)
+        online_user = request.user.username
+        if form.is_valid():
+            todos = ToDo.objects.filter(author=online_user).all()
+            for el in todos:
+                el.completion = True
+                el.save()
+                return redirect("people:dashboard")
+        context = {
+            'form': form
+        }
+        return render(request, template, context)
+
+
+def add_todo(request, template='dashboard.html'):
+    form = ToDoForm(request.POST or None)
+    online_user = request.user.username
+    if form.is_valid():
+        new_todo = ToDo(author=online_user)
+        new_todo.subject = form.cleaned_data['subject']
+        new_todo.expires = form.cleaned_data['expires']
+        new_todo.save()
+        return redirect("people:dashboard")
+    context = {
+        'form': form
+    }
+    return render(request, template, context)
+
+
+def remove_todo(request, template='dashboard.html'):
+    online_user = request.user.username
+    todos = ToDo.objects.filter(author=online_user, completion=True).all()
+    for el in todos:
+        el.delete()
+        return redirect("people:dashboard")
+    return render(request, template)
 
 
 def add_story(request, template='add_story.html'):
@@ -217,8 +132,9 @@ def add_story(request, template='add_story.html'):
         new_story.created = datetime.now().date()
         new_story.article_picture = form.cleaned_data['article_picture']
         new_story.save()
+        return redirect("people:dashboard")
     context = {
-        'form' : form
+        'form': form
     }
     return render(request, template, context)
 
@@ -227,19 +143,27 @@ def logout_view(request):
     logout(request)
     return redirect("index")
 
+
 def dashboard(request):
-        "Renders the dashboard page"
+        """Renders the dashboard page"""
+        todo = ToDo.objects.all()
         assert isinstance(request, HttpRequest)
+        add_todo_form = ToDoForm
+        complete_todo_form = ToDoCompletionForm
         return render(
             request,
             'dashboard.html',
+            {'todos': todo},
             context_instance=RequestContext(request,
             {
                 'title': 'Dashboard',
+                'form_add': add_todo_form,
+                'form_complete': complete_todo_form,
                 'year': datetime.now().year,
                 'date': datetime.now().date,
             })
         )
+
 
 def mentor_profile(request):
     "renders the dashboard page"
@@ -256,9 +180,10 @@ def mentor_profile(request):
 
     )
 
+
 def new_story(request):
-    'renders the new story page'
-    assert isinstance(request,HttpRequest)
+    """renders the new story page"""
+    assert isinstance(request, HttpRequest)
     form = AddStoryForm()
     return render(
         request,
@@ -266,6 +191,8 @@ def new_story(request):
         context_instance=RequestContext(request,
                                         {
                                             'title': 'New Success Story',
-                                            'form' : form,
+                                            'form': form,
                                         })
     )
+
+

@@ -1,7 +1,7 @@
 from django import forms
 
 from people.models import User
-from people.models import UNIVERSITIES, Mentor
+from people.models import UNIVERSITIES, Mentor, ToDo
 # Create your forms here.
 
 """class LoginForm(forms.ModelForm):
@@ -25,6 +25,7 @@ from people.models import UNIVERSITIES, Mentor
                 }
             )
         }"""
+
 
 class MentorLoginForm(forms.ModelForm):
     class Meta:
@@ -90,6 +91,8 @@ class MentorLoginForm(forms.ModelForm):
                 },
             )
         }"""
+
+
 class MentorUpdateForm(forms.ModelForm):
     class Meta:
         model = Mentor
@@ -112,6 +115,22 @@ class MentorUpdateForm(forms.ModelForm):
         first_name = forms.CharField(label='Your First and Middle Name(s)')
         last_name = forms.CharField(label='Your Last Name')
         picture = forms.ImageField(label='Upload your profile picture')
+
+
+class ToDoForm(forms.ModelForm):
+    class Meta:
+        model = ToDo
+        fields = ('subject', 'expires',)
+        subject = forms.CharField(label='Subject of the reminder', widget=forms.CharField())
+        expires = forms.DateInput()
+
+
+class ToDoCompletionForm(forms.ModelForm):
+    class Meta:
+        model = ToDo
+        fields = ('completion',)
+        completion = forms.CheckboxInput()
+
 
 class MentorRegisterForm(forms.ModelForm):
     class Meta:

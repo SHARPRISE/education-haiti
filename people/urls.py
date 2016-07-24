@@ -15,5 +15,10 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^mentor_profile/$', views.mentor_profile, name='mentor_profile'),
     url(r'^add_story_form/$', views.add_story, name='add_story_form'),
-    url(r'^new_story/$', views.new_story, name='new_story')
+    url(r'^new_story/$', views.new_story, name='new_story'),
+    url(r'^add_todo/$', views.add_todo, name='add_todo'),
+    url(r'^todo_completion/$', views.todo_completion, name='todo_completion'),
+    url(r'^todo_delete/$', views.remove_todo, name='todo_delete')
 ]
+
+#CREATE UNIQUE INDEX people_todo_author_id_key ON people_todo USING BTREE (author_id);

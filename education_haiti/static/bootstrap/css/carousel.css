@@ -275,7 +275,16 @@ body {
 .placeholder {
   margin-bottom: 20px;
 }
+
 .placeholder img {
+    display: inline-block;
+}
+
+.placeholder_c {
+  margin-bottom: 20px;
+}
+
+.placeholder_c img {
   display: inline-block;
   border-radius: 50%;
 }

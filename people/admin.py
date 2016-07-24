@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from people.models import User, Mentor
+from people.models import User, Mentor, ToDo
 # Register your models here.
+
 
 class UserAdmin(admin.ModelAdmin):
     fields          = ('email', 'username', 'is_staff', 'last_login','undergrad_college')
@@ -11,11 +12,17 @@ class UserAdmin(admin.ModelAdmin):
     ordering        = ('email', 'is_staff',)
     search_fields   = ('email', 'username',)
 
+
 class MentorAdmin(admin.ModelAdmin):
     fields          = ('user','first_name','last_name','biography','undergrad_college','grad_college','majors','interests','residency',
                        'phone','current_status','school_haiti', 'picture')
 
 
+class ToDoAdmin(admin.ModelAdmin):
+    fields = ('subject', 'completion')
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Mentor, MentorAdmin)
+admin.site.register(ToDo, ToDoAdmin)
 

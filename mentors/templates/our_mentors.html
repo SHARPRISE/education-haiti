@@ -4,9 +4,10 @@
 {% load staticfiles %}
 
 
-      <div class="row">
+      <div class="container">
+            <div class="row">
 
-        <div class="col-md-9 blog-main">
+        <div class="col-sm-8 blog-main">
 <div class="blog-main">
 
 {% for mentor in mentors %}
@@ -20,7 +21,7 @@
                       </div><br />
                       {% else %}
     <div class="col-md-5">
-        <img class="col-md-7" data-src="holder.js/500x500/auto" alt="No image yet.">
+        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet.">
      </div>
                   {% endif %}
             <p></p>
@@ -39,5 +40,6 @@
 	<p>&nbsp;</p>
 </div>
 </div>
+            </div>
     </div>
 {% endblock %}

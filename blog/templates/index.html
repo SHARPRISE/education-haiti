@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% block content %}
 
+
+
   <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -53,7 +55,6 @@
       </a>
     </div><!-- /.carousel -->
 
-<body>
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -63,13 +64,13 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="{% static 'bootstrap/img/icons/png/mortarboard.png' %}" alt="Generic placeholder image" width="140" height="140">
+          <img src="{% static 'bootstrap/img/icons/png/mortarboard.png' %}" alt="Generic placeholder image" width="140" height="140">
           <h2>Success Stories</h2>
           <p>A blog featuring our different success stories</p>
           <p><a class="btn btn-default" href="{% url 'success_blog' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="{% static 'bootstrap/img/icons/png/businessman.png' %}" alt="Generic placeholder image" width="140" height="140">
+          <img src="{% static 'bootstrap/img/icons/png/businessman.png' %}" alt="Generic placeholder image" width="140" height="140">
           <h2>Our Mentors</h2>
           <p>List of the different mentors here in Education Haiti</p>
           <p><a class="btn btn-default" href="{% url 'our_mentors' %}" role="button">View details &raquo;</a></p>
@@ -108,5 +109,4 @@
 
       <!-- /END THE FEATURETTES -->
 </div>
-</body>
 {% endblock %}

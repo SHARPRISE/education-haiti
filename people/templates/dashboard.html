@@ -23,9 +23,9 @@
             </div>
             <div class="col-sm-3 placeholder">
               <img src="{% static 'bootstrap/img/icons/png/Pensils.png' %}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4><p><a class="btn btn-lg btn-info" href="#" role="button">New Resources</a></p></h4>
+              <h4><p><a class="btn btn-lg btn-info" href="#" role="button">New Resources <br />(Coming Soon)</a></p></h4>
             </div>
-              <div class="col-sm-3 placeholder">
+              <div class="col-sm-3 placeholder_c">
                   {%  if request.user.is_authenticated %}
                       {% if request.user.mentor.picture %}
               <img src="{{ request.user.mentor.picture.url }}" width="100" height="100" class="img-circle" alt="Profile Picture">
@@ -34,141 +34,93 @@
                     {% endif %}{% endif %}
               <h4><p><a class="btn btn-lg btn-danger" href="{% url 'people:mentor_profile' %}" role="button">Modify Your Profile</a></p></h4>
             </div>
-                        <div class="col-sm-3 placeholder">
+                        <div class="col-sm-3 placeholder_c">
               <img src="{% static 'bootstrap/img/login/logoff.png' %}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4><p><a class="btn btn-lg btn-primary" href="{% url 'people:logout' %}" role="button">Log Off</a></p></h4>
             </div>
       </div>
         <div class="col-sm-9 col-sm-offset-2 col-md-10 col-md-offset-1 main">
 
-
-
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
+              <p> Pending </p>
                 <tr>
                   <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Subject</th>
+                  <th>Emitted</th>
+                  <th>Expires</th>
+                  <th>Completion</th>
+                  <th>Are you done?</th>
                 </tr>
               </thead>
               <tbody>
+              {% for todo in todos %}
+                  {% if todo.author == request.user.username %}
+                      {% if todo.completion == False %}
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                  <td>{{ todo.id }}</td>
+                  <td>{{ todo.subject }}</td>
+                  <td>{{ todo.emitted }}</td>
+                  <td>{{ todo.expires }}</td>
+                  <td>Pending</td>
+                  <td><form class="form-horizontal" id="form" method="POST" action="{% url 'people:todo_completion' %}"> {% csrf_token %}
+            {% csrf_token %}
+				{{ form_completion.as_p }}
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Done!</button>
+			</form></td>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
+                          {% endif %}
+                  {% endif %}
+              {% endfor %}
               </tbody>
             </table>
+          </div>
+          <br /><br />
+            <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <p> Recently Completed </p>
+                <tr>
+                  <th>#</th>
+                  <th>Subject</th>
+                  <th>Emitted</th>
+                  <th>Expires</th>
+                  <th>Completion</th>
+                  <th> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for todo in todos %}
+                  {% if todo.author == request.user.username %}
+                      {% if todo.completion == True %}
+                <tr>
+                  <td>{{ todo.id }}</td>
+                  <td>{{ todo.subject }}</td>
+                  <td>{{ todo.emitted }}</td>
+                  <td>{{ todo.expires }}</td>
+                  <td>Completed!! </td>
+                <td><form class="form-horizontal" id="form" method="POST" action="{% url 'people:todo_delete' %}"> {% csrf_token %}
+            {% csrf_token %}
+				{{ form_completion.as_p }}
+				<button class="btn btn-lg btn-danger btn-block" type="submit">Delete</button>
+			</form></td>
+                </tr>
+                          {% endif %}
+                  {% endif %}
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+            <br />
+          <h4> Add a To Do </h4>
+          <br />
+          <form class="form-horizontal" id="form" method="POST" action="{% url 'people:add_todo' %}"> {% csrf_token %}
+            {% csrf_token %}
+				{{ form_add.as_ul }}
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Add ToDo</button>
+			</form>
+            <br/>
           </div>
         </div>
       </div>
