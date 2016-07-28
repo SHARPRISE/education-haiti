@@ -14,7 +14,34 @@ from hashlib import sha1
 # Create your views here.
 
 
-#custom login view for mentors
+# register for mentor
+def register_mentor(request, template="register_mentor.html"):
+    if request.user.is_authenticated():
+        return redirect("people:dashboard")
+    if request.method == "POST":
+        form = MentorRegisterForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(
+                form.cleaned_data["username"],
+                form.cleaned_data["email"],
+            )
+        new_user.set_password(form.cleaned_data["password"])
+        new_user.undergrad_college = form.cleaned_data["undergrad_college"]
+        new_user.rank = 'A'
+        new_user.is_active = True
+        new_user.save()
+        new_mentor = Mentor(user=new_user, undergrad_college=form.cleaned_data["undergrad_college"])
+        new_mentor.save()
+        url = "<h2><a href='/people/mentor_login'>Login</a></h2>"
+        go_back = "<h1>successfully registered, go back to login page:</h1> <br /> </h1>"
+        return HttpResponse(go_back + url)
+    else:
+        form = MentorRegisterForm()
+    return render(request, template, {"form":form,
+                                      'title': 'Mentor Register'})
+
+
+# custom login view for mentors
 def mentor_login(request, template="mentor_login.html"):
     if request.user.is_authenticated():
         # TODO redirect to home page
