@@ -7,7 +7,7 @@
 
           <div class="row placeholders">
                     {% if request.user.is_authenticated %}
-    {% if request.user.mentor.majors == 'Your major(s), please separate each major with a comma' %}
+    {% if request.user.mentor.majors == '' %}
 <div class="alert alert-danger" role="alert">You haven't completed your profile yet, please do it right now by
   <a href="{% url 'people:mentor_profile' %}" class="alert-link">clicking here</a>, an incomplete profile isn't a good thing to have..
 </div>
