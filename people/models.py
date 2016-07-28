@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from hashlib import sha1
 # Create your models here.
@@ -123,7 +123,8 @@ class ToDo(models.Model):
     def __str__(self):
         return self.subject + 'by' + self.Mentor.user.name
 
-    def auto_delete(self):
+    def auto_delete_check(self):
         today = datetime.now().date
-        if self.expires == today:
+        expiration_delete = self.expires + timedelta(days=2)
+        if today == expiration_delete:
             self.delete()

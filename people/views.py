@@ -147,6 +147,8 @@ def logout_view(request):
 def dashboard(request):
         """Renders the dashboard page"""
         todo = ToDo.objects.all()
+        for el in todo:
+            ToDo.auto_delete_check(el)
         assert isinstance(request, HttpRequest)
         add_todo_form = ToDoForm
         complete_todo_form = ToDoCompletionForm
