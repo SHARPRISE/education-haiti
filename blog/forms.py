@@ -7,9 +7,29 @@ class AddStoryForm(forms.ModelForm):
     class Meta:
         model = SuccessStory
         fields = ('title', 'slug','description', 'content','published','article_picture')
-        title = forms.CharField(label='Title')
         slug = forms.SlugField(label='slug')
-        description = forms.CharField(label="Article's description")
-        content = forms.TextInput()
         published = forms.CheckboxInput()
         article_picture = forms.ImageField()
+        widgets = {
+            'title': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Title',
+                    'required': True,
+                }
+            ),
+            'description': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Description',
+                    'required': True,
+                }
+            ),
+            'content': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Text Content',
+                    'required': True,
+                }
+            ),
+        }

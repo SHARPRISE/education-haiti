@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import datetime
 
 from hashlib import sha1
 # Create your models here.
@@ -93,16 +94,16 @@ class Mentor(models.Model):
 #    graduating  = models.DateField()
     undergrad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University', help_text='Your Undergraduate College')
     grad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University', help_text='Your Graduate College')
-    majors = models.CharField(max_length=100, help_text='Your major(s), please separate each major with a comma')
-    interests = models.CharField(max_length=150, help_text='Your interests, please separate each one with a comma')
-    residency = models.CharField(max_length=255, help_text='Your state/city of residency')
-    phone = models.CharField(max_length=255, default='+(000)0000000', help_text='Your phone number')
-    current_status = models.CharField(max_length=255, default='work work work work work', help_text='Your current status/work')
-    school_haiti = models.CharField(max_length=255, default='Institution Alea Touare', help_text='Your school in Haiti')
-    first_name = models.CharField(max_length=100, help_text='Your first name')
-    last_name = models.CharField(max_length=100, help_text='Your last name')
+    majors = models.CharField(max_length=100)
+    interests = models.CharField(max_length=150)
+    residency = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255, default='+(000)0000000')
+    current_status = models.CharField(max_length=255)
+    school_haiti = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
 #   mentees = models.ManyToManyField(Mentee)
-#    todos = models.ManyToManyField(ToDo)
+#   todos = models.ManyToManyField(ToDo)
     hidden = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ["university"]
@@ -114,10 +115,15 @@ class Mentor(models.Model):
 # To-do App. user is a Mentor, has an emission date, has an expiration date, has a subject.
 class ToDo(models.Model):
     author = models.CharField(max_length=25, default='New Author')
-    subject = models.CharField(max_length=200, default='New ToDo', help_text='What is this ToDo about')
+    subject = models.CharField(max_length=200)
     emitted = models.DateField(auto_now_add=True)
-    expires = models.DateField(help_text='Should be enterd in the YYYY-MM-DD format. Ex: 2016-10-28')
+    expires = models.DateField()
     completion = models.BooleanField(default=False)
 
     def __str__(self):
         return self.subject + 'by' + self.Mentor.user.name
+
+    def auto_delete(self):
+        today = datetime.now().date
+        if self.expires == today:
+            self.delete()

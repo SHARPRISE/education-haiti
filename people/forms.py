@@ -98,31 +98,101 @@ class MentorUpdateForm(forms.ModelForm):
         model = Mentor
         fields = ('biography','grad_college','majors','interests','residency','phone','current_status','school_haiti','first_name',
                   'last_name','picture')
-        biography = forms.TextInput()
-        grad_college = forms.MultipleChoiceField(
-            choices=UNIVERSITIES,
-            label='Choose your Graduate College',
-            initial='',
-            widget=forms.SelectMultiple(),
-            required=True
-        )
-        majors = forms.CharField(label="Seperate each major with a comma, ex: Electrical Engineering, Economy")
-        interests = forms.CharField(label="Separate each interest with a comma, ex: Education, Computer Science")
-        residency = forms.CharField()
-        phone = forms.CharField()
-        current_status = forms.CharField(label='Your current status, ex: Analyst, CEO, etc')
-        school_haiti = forms.CharField(label='Your High School back in Haiti')
-        first_name = forms.CharField(label='Your First and Middle Name(s)')
-        last_name = forms.CharField(label='Your Last Name')
         picture = forms.ImageField(label='Upload your profile picture')
+        widgets = {
+            'biography': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Your Biography',
+                    'required': True,
+                }
+            ),
+            'grad_college': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Your Graduate College',
+                    'required': True,
+                }
+            ),
+            'majors': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Your major(s), please separate each major with a comma',
+                    'required': True,
+                }
+            ),
+            'interests': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Your interests, please separate each one with a comma',
+                    'required': True,
+                }
+            ),
+            'residency': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Your state/city of residency',
+                    'required': True,
+                }
+            ),
+            'phone': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Phone Number',
+                    'required': True,
+                }
+            ),
+            'current_status': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Your current status/work ... work work work work work',
+                    'required': True,
+                }
+            ),
+            'school_haiti': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'School in Haiti ... Institution Alea Touare',
+                    'required': True,
+                }
+            ),
+            'first_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'First Name',
+                    'required': True,
+                }
+            ),
+            'last_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Last Name',
+                    'required': True,
+                }
+            ),
+        }
 
 
 class ToDoForm(forms.ModelForm):
     class Meta:
         model = ToDo
         fields = ('subject', 'expires',)
-        subject = forms.CharField(label='Subject of the reminder', widget=forms.CharField())
-        expires = forms.DateInput()
+        widgets = {
+            'subject': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'What is this ToDo about',
+                    'required': True,
+                }
+            ),
+            'expires': forms.SelectDateWidget(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Should be enterd in the YYYY-MM-DD format. Ex: 2016-10-28',
+                    'required': True,
+                }
+            ),
+        }
 
 
 class ToDoCompletionForm(forms.ModelForm):
