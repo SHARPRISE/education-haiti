@@ -54,13 +54,7 @@ def mentor_login(request, template="mentor_login.html"):
             # the password verified for the user
             if user.is_active:
                 login(request, user)
-                if user.rank == 'A':
-                    return redirect("people:dashboard")
-                else:
-                    url = "<h2><a href='/people/dashboard'>Continue to Dashboard &raquo</a></h2>"
-                    bad_rank = "Welcome Admin"
-                    logout(request)
-                    return HttpResponse(url + bad_rank)
+                return redirect("people:dashboard")
             else:
                 return HttpResponse("account inactive")
         else:
