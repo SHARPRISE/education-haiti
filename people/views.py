@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.http import HttpRequest
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 
 from people.models import User, Mentor, ToDo
 from blog.models import SuccessStory
@@ -10,7 +9,6 @@ from people.forms import MentorLoginForm, MentorRegisterForm, MentorUpdateForm, 
 from blog.forms import AddStoryForm
 
 from datetime import datetime
-from hashlib import sha1
 # Create your views here.
 
 
@@ -59,14 +57,10 @@ def mentor_login(request, template="mentor_login.html"):
                 if user.rank == 'A':
                     return redirect("people:dashboard")
                 else:
-                    url = "<h2><a href='/people/login'>Back to Mentee Login &raquo</a></h2>"
-                    bad_rank = "<h1>Wrong Login</h1>" \
-                               "<br />" \
-                               "<h2>You are trying to connect to the Mentor page with a Mentee account." \
-                               "<b>This is not possible!!! </b>" \
-                               "Please go back and login on the Mentee login page.</h2>"
+                    url = "<h2><a href='/people/dashboard'>Continue to Dashboard &raquo</a></h2>"
+                    bad_rank = "Welcome Admin"
                     logout(request)
-                    return HttpResponse(bad_rank + url)
+                    return HttpResponse(url + bad_rank)
             else:
                 return HttpResponse("account inactive")
         else:

@@ -39,8 +39,8 @@ UNIVERSITIES = (
 # User model
 class User(AbstractUser):
     RANK_CHOICES = (
-        ('A', 'mentor'),
-        ('B', 'mentee'),
+        ('A', 'Mentor'),
+        ('B', 'Admin'),
     )
 
     rank = models.CharField(max_length=255, choices=RANK_CHOICES, default=RANK_CHOICES[1], null=True,)
