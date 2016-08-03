@@ -3,9 +3,36 @@
 {% block content %}
 {% load staticfiles %}
 
-<br /><br /><br />
 <div class="container">
+            <div class="row">
+
+        <div class="col-sm-8 blog-main">
+<div class="blog-main">
+{% for open_program in open_programs %}
+    <div class="blog-post">
+    <h2 class="blog-post-title">{{ open_program.name }}</h2>
+            <p class="blog-post-meta"> <b>Taking place at: </b>{{ open_program.location }}
+                 -- Starts on: <b>{{ open_program.start_date }}</b>  -- Ends on: <b>{{ open_program.end_date }}</b> </p>
+                  {% if open_program.picture %}
+                      <div class="col-md-5">
+            <p><img class="featurette-image img-responsive center-block" src="{{ open_program.picture.url }}" /></p>
+                      </div><br />
+                      {% else %}
+    <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet.">
+     </div>
+    {% endif %}
+    <p></p>
+    <p>{{ open_program.description }}</p>
+    <p>{{ open_program.details }}</p>
+    <p><b>Fee: </b> {{ open_program.fee }} HTG</p>
+{% endfor %}
+</div>
+</div>
+        </div>
+<br /> <br />
   <p>Take a look at useful resource guides <a href="{% url 'resources' %}">"here!"</a></p>
 </div>
+    </div>
 
 {% endblock %}

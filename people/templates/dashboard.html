@@ -23,7 +23,20 @@
             </div>
             <div class="col-sm-3 placeholder">
               <img src="{% static 'bootstrap/img/icons/png/Pensils.png' %}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4><p><a class="btn btn-lg btn-info" href="#" role="button">New Resources <br />(Coming Soon)</a></p></h4>
+              <h4>
+                  <div class="dropdown">
+                      <button class="btn btn-lg btn-info dropdown-toggle" type="button" id="dropdownMenu1"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          New Resources
+                          <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a href="{% url 'add_program' %}">Add Programs</a></li>
+                          <li><a href="#">Add News (coming soon)</a></li>
+                          <li><a href="#">Add Guides (coming soon)</a></li>
+                      </ul>
+                  </div>
+                  </h4>
             </div>
               <div class="col-sm-3 placeholder_c">
                   {%  if request.user.is_authenticated %}
