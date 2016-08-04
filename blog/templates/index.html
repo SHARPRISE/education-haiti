@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="third-slide" src="{% static 'bootstrap/img/SAT.jpg' %}" alt="Third slide"s>
+          <img class="third-slide" src="{% static 'bootstrap/img/AndroidBootcamp.png' %}" alt="Third slide"s>
           <div class="container">
             <div class="carousel-caption">
               <h1>Our Programs</h1>
@@ -85,11 +85,11 @@
 
 
       <!-- START THE FEATURETTES -->
-
-{% for story in stories|slice:"4" %}
-     <hr class="featurette-divider">
-
-
+        <div class="col-md-7">
+        <h2 class="featurette-heading">Success Stories</h2>
+           </br >
+        </div>
+{% for story in stories|slice:"2" %}
     {% if forloop.counter|divisibleby:2 %}
         <div class="row featurette">
         <div class="col-md-7">
@@ -122,8 +122,30 @@
     {% endif %}
 
     {% endfor %}
+     <p><a class="btn btn-danger" href="{% url 'success_blog' %}" role="button">See all Success Stories &raquo;</a></p>
+        <div class="col-md-7">
+        <h2 class="featurette-heading">Most Recent Program</h2>
+</br >
+        </div>
+    {% for program in programs %}
+                <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading">{{program.name}} <span class="text-muted">{{program.description}}.</span></h2>
+          <p class="lead">Taking Place at {{program.location}} --- Start Date: {{ program.start_date }} ---
+          End Date: {{ program.end_date }} --- Fee: {{ program.fee }} HTG</p>
+            <p class="lead">{{ program.details }} </p>
+        </div>
+                      {% if program.picture %}
+        <div class="col-md-5 col-md-pull-7">
+          <img class="featurette-image img-responsive center-block" width="500" height="500" src="{{ program.picture.url }}" alt="Generic placeholder image"></div>
+            {% else %}
+                                  <div class="col-md-5 col-md-pull-7">
+             <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet."></div>
+            {% endif %}</div>
 
-      <hr class="featurette-divider">
+    {% endfor %}
+            <p><a class="btn btn-danger" href="{% url 'programs' %}" role="button">See all Programs &raquo;</a></p>
+          <hr class="featurette-divider">
 </div>
       <!-- /END THE FEATURETTES -->
 {% endblock %}
