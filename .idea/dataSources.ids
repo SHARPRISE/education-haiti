@@ -5,11 +5,14 @@
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.5">
-      <database id="1" name="education-haiti-local"/>
+    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+      <database id="1" name="education-haiti-local">
+        <visible>1</visible>
+      </database>
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
+        <visible>1</visible>
         <introspection-state-number>1320</introspection-state-number>
         <introspection-timestamp>2016-07-22.08:55:39.007</introspection-timestamp>
       </schema>
@@ -116,13 +119,13 @@
       <column id="28" parent="15" name="id">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;auth_group_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="29" parent="15" name="name">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(80)</data-type>
+        <data-type>varchar(80)|0</data-type>
       </column>
       <index id="30" parent="15" name="auth_group_pkey">
         <object-id>16880</object-id>
@@ -153,18 +156,18 @@
       <column id="35" parent="16" name="id">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;auth_group_permissions_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="36" parent="16" name="group_id">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="37" parent="16" name="permission_id">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <index id="38" parent="16" name="auth_group_permissions_pkey">
         <object-id>16890</object-id>
@@ -214,23 +217,23 @@ permission_id</columns>
       <column id="46" parent="17" name="id">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;auth_permission_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="47" parent="17" name="name">
         <state-number>957</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="48" parent="17" name="content_type_id">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="49" parent="17" name="codename">
         <state-number>955</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <index id="50" parent="17" name="auth_permission_pkey">
         <object-id>16872</object-id>
@@ -269,48 +272,48 @@ codename</columns>
       <column id="56" parent="18" name="id">
         <state-number>970</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;blog_successstory_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="57" parent="18" name="title">
         <state-number>972</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <column id="58" parent="18" name="author">
         <state-number>972</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+        <data-type>varchar(50)|0</data-type>
       </column>
       <column id="59" parent="18" name="content">
         <state-number>972</state-number>
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="60" parent="18" name="created">
         <state-number>978</state-number>
         <mandatory>1</mandatory>
-        <data-type>date</data-type>
+        <data-type>date|0</data-type>
       </column>
       <column id="61" parent="18" name="description">
         <state-number>972</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="62" parent="18" name="slug">
         <state-number>972</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="63" parent="18" name="published">
         <state-number>983</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="64" parent="18" name="article_picture">
         <state-number>985</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <index id="65" parent="18" name="blog_successstory_pkey">
         <object-id>17065</object-id>
@@ -336,41 +339,41 @@ codename</columns>
       <column id="69" parent="19" name="id">
         <state-number>966</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;django_admin_log_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="70" parent="19" name="action_time">
         <state-number>968</state-number>
         <mandatory>1</mandatory>
-        <data-type>timestamp with time zone</data-type>
+        <data-type>timestamp with time zone|0</data-type>
       </column>
       <column id="71" parent="19" name="object_id">
         <state-number>966</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="72" parent="19" name="object_repr">
         <state-number>966</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(200)</data-type>
+        <data-type>varchar(200)|0</data-type>
       </column>
       <column id="73" parent="19" name="action_flag">
         <state-number>966</state-number>
         <mandatory>1</mandatory>
-        <data-type>smallint</data-type>
+        <data-type>smallint|0</data-type>
       </column>
       <column id="74" parent="19" name="change_message">
         <state-number>966</state-number>
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="75" parent="19" name="content_type_id">
         <state-number>966</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="76" parent="19" name="user_id">
         <state-number>966</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <index id="77" parent="19" name="django_admin_log_pkey">
         <object-id>17041</object-id>
@@ -412,18 +415,18 @@ codename</columns>
       <column id="84" parent="20" name="id">
         <state-number>951</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;django_content_type_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="85" parent="20" name="app_label">
         <state-number>951</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <column id="86" parent="20" name="model">
         <state-number>951</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <index id="87" parent="20" name="django_content_type_pkey">
         <object-id>16862</object-id>
@@ -451,23 +454,23 @@ model</columns>
       <column id="91" parent="21" name="id">
         <state-number>950</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;django_migrations_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="92" parent="21" name="app">
         <state-number>950</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="93" parent="21" name="name">
         <state-number>950</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="94" parent="21" name="applied">
         <state-number>950</state-number>
         <mandatory>1</mandatory>
-        <data-type>timestamp with time zone</data-type>
+        <data-type>timestamp with time zone|0</data-type>
       </column>
       <index id="95" parent="21" name="django_migrations_pkey">
         <object-id>16854</object-id>
@@ -483,17 +486,17 @@ model</columns>
       <column id="97" parent="22" name="session_key">
         <state-number>989</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(40)</data-type>
+        <data-type>varchar(40)|0</data-type>
       </column>
       <column id="98" parent="22" name="session_data">
         <state-number>989</state-number>
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="99" parent="22" name="expire_date">
         <state-number>989</state-number>
         <mandatory>1</mandatory>
-        <data-type>timestamp with time zone</data-type>
+        <data-type>timestamp with time zone|0</data-type>
       </column>
       <index id="100" parent="22" name="django_session_pkey">
         <object-id>17138</object-id>
@@ -519,77 +522,77 @@ model</columns>
       <column id="104" parent="23" name="id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;people_mentor_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="105" parent="23" name="picture">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <column id="106" parent="23" name="biography">
         <state-number>1054</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="107" parent="23" name="undergrad_college">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="108" parent="23" name="grad_college">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="109" parent="23" name="majors">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <column id="110" parent="23" name="hidden">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="111" parent="23" name="user_id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="112" parent="23" name="interests">
         <state-number>1012</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(150)</data-type>
+        <data-type>varchar(150)|0</data-type>
       </column>
       <column id="113" parent="23" name="residency">
         <state-number>1014</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="114" parent="23" name="phone">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="115" parent="23" name="current_status">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="116" parent="23" name="school_haiti">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="117" parent="23" name="first_name">
         <state-number>1038</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <column id="118" parent="23" name="last_name">
         <state-number>1038</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
+        <data-type>varchar(100)|0</data-type>
       </column>
       <index id="119" parent="23" name="people_mentor_pkey">
         <object-id>16965</object-id>
@@ -621,33 +624,33 @@ model</columns>
       <column id="124" parent="24" name="id">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;people_todo_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="125" parent="24" name="author">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
+        <data-type>varchar(25)|0</data-type>
       </column>
       <column id="126" parent="24" name="subject">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(200)</data-type>
+        <data-type>varchar(200)|0</data-type>
       </column>
       <column id="127" parent="24" name="emitted">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>date</data-type>
+        <data-type>date|0</data-type>
       </column>
       <column id="128" parent="24" name="expires">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>date</data-type>
+        <data-type>date|0</data-type>
       </column>
       <column id="129" parent="24" name="completion">
         <state-number>1320</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <index id="130" parent="24" name="people_todo_pkey">
         <object-id>25472</object-id>
@@ -663,71 +666,71 @@ model</columns>
       <column id="132" parent="25" name="id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;people_user_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="133" parent="25" name="password">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(128)</data-type>
+        <data-type>varchar(128)|0</data-type>
       </column>
       <column id="134" parent="25" name="last_login">
         <state-number>964</state-number>
-        <data-type>timestamp with time zone</data-type>
+        <data-type>timestamp with time zone|0</data-type>
       </column>
       <column id="135" parent="25" name="is_superuser">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="136" parent="25" name="username">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
+        <data-type>varchar(30)|0</data-type>
       </column>
       <column id="137" parent="25" name="first_name">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
+        <data-type>varchar(30)|0</data-type>
       </column>
       <column id="138" parent="25" name="last_name">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
+        <data-type>varchar(30)|0</data-type>
       </column>
       <column id="139" parent="25" name="email">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(254)</data-type>
+        <data-type>varchar(254)|0</data-type>
       </column>
       <column id="140" parent="25" name="is_staff">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="141" parent="25" name="is_active">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="142" parent="25" name="date_joined">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>timestamp with time zone</data-type>
+        <data-type>timestamp with time zone|0</data-type>
       </column>
       <column id="143" parent="25" name="rank">
         <state-number>1177</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="144" parent="25" name="undergrad_college">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="145" parent="25" name="hidden">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <index id="146" parent="25" name="people_user_pkey">
         <object-id>16924</object-id>
@@ -773,18 +776,18 @@ model</columns>
       <column id="154" parent="26" name="id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;people_user_groups_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="155" parent="26" name="user_id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="156" parent="26" name="group_id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <index id="157" parent="26" name="people_user_groups_pkey">
         <object-id>16936</object-id>
@@ -834,18 +837,18 @@ group_id</columns>
       <column id="165" parent="27" name="id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>nextval(&apos;people_user_user_permissions_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="166" parent="27" name="user_id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="167" parent="27" name="permission_id">
         <state-number>964</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <index id="168" parent="27" name="people_user_user_permissions_pkey">
         <object-id>16944</object-id>
