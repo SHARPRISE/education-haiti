@@ -59,7 +59,7 @@ def programs(request):
         {'open_programs': open_program},
         context_instance=RequestContext(request,
         {
-            'title': 'Programs',
+            'title': 'Our Programs',
             'year': datetime.now().year,
             'date': datetime.now().date,
         })

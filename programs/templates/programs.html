@@ -4,7 +4,14 @@
 {% load staticfiles %}
 
 <div class="container">
-            <div class="row">
+
+
+                  <div class="blog-header">
+        <h1 class="blog-title">{{ title }}</h1>
+        <p class="lead blog-description">The different programs offered by Education Haiti!</p>
+      </div>
+
+        <div class="row">
 
         <div class="col-sm-8 blog-main">
 <div class="blog-main">
@@ -30,9 +37,19 @@
 </div>
 </div>
         </div>
-<br /> <br />
-  <p>Take a look at useful resource guides <a href="{% url 'resources' %}">"here!"</a></p>
+
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+              <h4> Resource Guides </h4>
+  <p>Take a look at useful resource guides here!
+  <p><a class="btn btn-inverse" href="{% url 'resources' %}" role="button">View details &raquo;</a></p></p>
+<br />
+            <h4>News</h4>
+        <p>Read news about us! <b>Coming Soon</b></p>
+                <p><a class="btn btn-danger" href="#" role="button">Coming Soon</a></p></p>
+</div></div>
 </div>
     </div>
+    <br /> <br />
 
 {% endblock %}
