@@ -5,15 +5,16 @@
 <br />
 
  <div class="container">
+   <div class="col-sm-8 blog-main">
 
+<div class="blog-post">
       <div class="blog-header">
-        <h1 class="blog-title">{{ title }}</h1>
-        <p class="lead blog-description">Blog featuring our diverse success stories!</p>
-      </div>
+        <h1 class="blog-post-title">{{ title }}</h1>
+        <p class="lead blog-post-description">Blog featuring our diverse success stories!</p>
+      </div></div>
 
       <div class="row">
 
-        <div class="col-sm-8 blog-main">
 
 
               {% for story in stories %}
@@ -35,14 +36,16 @@
               <a href="{{story.get_absolute_url}}">Read More &raquo;</a>
           </div><!-- /.blog-post -->
               {% endfor %}
-
+</div>
 
             <br />
 
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="blog-post">
           <div class="sidebar-module sidebar-module-inset">
+            <br />
             <h4>About</h4>
             <p>We connect ambitious high school students with mentors
  to help them get into their dream universities.</p>
@@ -61,6 +64,7 @@
             </ol>
           </div>
         </div><!-- /.blog-sidebar -->
+      </div>
 
       </div><!-- /.row -->
 
