@@ -5,8 +5,8 @@
 
 <div class="container">
 
-
-                  <div class="blog-header">
+   <div class="col-sm-8 blog-main">
+                  <div class="blog-post">
         <h1 class="blog-title">{{ title }}</h1>
         <p class="lead blog-description">The different programs offered by Education Haiti!</p>
       </div>
@@ -35,11 +35,12 @@
     <p><b>Fee: </b> {{ open_program.fee }} HTG</p>
 {% endfor %}
 </div>
-</div>
+</div></div>
         </div>
-
-            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <br />
+                <div class="col-sm-3 col-sm-offset-1 blog-sidebar">   <div class="blog-post">
           <div class="sidebar-module sidebar-module-inset">
+          </br >
               <h4> Resource Guides </h4>
   <p>Take a look at useful resource guides here!
   <p><a class="btn btn-inverse" href="{% url 'resources' %}" role="button">View details &raquo;</a></p></p>
@@ -47,7 +48,7 @@
             <h4>News</h4>
         <p>Read news about us! <b>Coming Soon</b></p>
                 <p><a class="btn btn-danger" href="#" role="button">Coming Soon</a></p></p>
-</div></div>
+</div></div></div>
 </div>
     </div>
     <br /> <br />
