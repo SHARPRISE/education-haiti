@@ -12,20 +12,28 @@
 
 {% for mentor in mentors %}
           <div class="blog-post">
-            <h2 class="blog-post-title">{{ mentor.first_name }} {{ mentor.last_name }}</h2>
-            <p class="blog-post-meta"> <b>Went to: </b>School in Haiti: <b>{{ mentor.school_haiti }}</b>
-                -- Undergraduate college: <b>{{ mentor.get_undergrad_college_display }}</b>  -- Graduate college: <b>{{ mentor.get_grad_college_display }}</b> </p>
-                  {% if mentor.picture %}
-                      <div class="col-md-5">
-            <p><img class="featurette-image img-responsive center-block" src="{{ mentor.picture.url }}" /></p>
-                      </div><br />
-                      {% else %}
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet.">
-     </div>
-                  {% endif %}
-            <p></p>
-            <p><b>{{ mentor.biography }}</b> </p>
+            <h3 class="blog-post-title">{{ mentor.first_name }} {{ mentor.last_name }}</h2>
+
+            {% if mentor.picture %}
+            <div class="col-md-5">
+              <p><img class="featurette-image img-responsive center-block" src="{{ mentor.picture.url }}" /></p>
+            </div><br />
+            {% else %}
+            <div class="col-md-5">
+              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet.">
+            </div>
+            {% endif %}
+
+            <p class="blog-post-meta"> <b>Went to: </b> {{ mentor.school_haiti }} </p>
+            <p class="blog-post-meta">
+              Undergraduate college: <b>{{ mentor.get_undergrad_college_display }}</b>
+            </p>
+
+            <p class="blog-post-meta">
+                Graduate college: <b>{{ mentor.get_grad_college_display }}</b>
+            </p>
+
+            <p> <b>{{ mentor.biography }}</b> </p>
              <p> Studied {{ mentor.majors }}, interested in {{ mentor.interests }}. </p>
     <p> Lives in {{ mentor.residency }}.</p>
     <p> Current status: {{ mentor.current_status }}</p>
