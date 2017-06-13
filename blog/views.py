@@ -45,7 +45,7 @@ def success_blog(request):
             'date': datetime.now().date(),
         })
     )
-
+# I'm adding this comment to debug the Heroku deployment
 
 # Success Stories slug thingy
 def story(request, slug):
