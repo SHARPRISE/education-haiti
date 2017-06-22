@@ -125,6 +125,10 @@ section.testimonials {
   }
 }
 
+.media-object {
+  height: 150px;
+}
+
 .site-footer h5 {
   color:inherit;
   font-size:20px;
@@ -154,4 +158,3 @@ section.testimonials {
     text-align:right;
   }
 }
-

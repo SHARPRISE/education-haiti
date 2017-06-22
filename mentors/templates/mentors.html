@@ -12,14 +12,20 @@
       {% for mentor in mentors %}
     <div class="jumbotron" style="padding: 50px">
         <div class="media">
-            <div class="media-left">
-                <a><img class="media-object" src=" "></a>
-            </div>
+                {% if mentor.picture %}
+                <div class="media-left">
+                  <a><img class="media-object" src="{{ mentor.picture.url }}"></a>
+                </div>
+                {% else %}
+                <div class="media-left">
+                    <a><img class="media-object" data-src="holder.js/500x500/auto" alt="Image not available."></a>
+                </div>
+                {% endif %}
             <div class="media-body">
                 <h4 class="media-heading" style="font-weight:bold;">{{ mentor.first_name }} {{ mentor.last_name }}</h4>
                 <h4 class="media-heading">{{ mentor.school_haiti }}</h4>
-                <h4 class="media-heading">Undergraduate Degree: {{ mentor.get_undergrad_college_display }}</h4>
-                <h4 class="media-heading">Graduate Degree: {{ mentor.get_grad_college_display }}</h4></div>
+                <h4 class="media-heading">Undergraduate University: {{ mentor.get_undergrad_college_display }}</h4>
+                <h4 class="media-heading">Graduate University: {{ mentor.get_grad_college_display }}</h4></div>
         </div>
     </div>
       {% endfor %}
