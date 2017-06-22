@@ -32,7 +32,14 @@ UNIVERSITIES = (
     ('25', 'Princeton University'),
     ('26', 'Montclair State University'),
     ('27', 'University of Georgia'),
-    ('28', '------------------------'),
+    ('28', 'Slippery Rock University'),
+    ('29', 'University of Rochester'),
+    ('30', 'TRCC'),
+    ('31', 'Syracuse University'),
+    ('32', 'University of Virginia'),
+    ('33', 'St John\'s University'),
+    ('34', 'Wake Forest University'),
+    ('35', 'N/A')
 )
 
 # User model
