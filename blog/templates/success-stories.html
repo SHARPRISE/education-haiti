@@ -1,0 +1,32 @@
+{% extends "../../blog/templates/index.html" %}
+{% load staticfiles %}
+    {% block body %}
+    <div class="highlight-blue">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Success Stories</h2>
+                <p class="text-center">Our prorgram strives to bring haitian students closer to the colleges of their dreams. Here are some of the great successes we have achieved over the last few years. </p>
+            </div>
+            <div class="buttons"></div>
+        </div>
+    </div>
+    {% for story in stories %}
+    <div class="jumbotron" style="background-color:#28415b; padding:30px">
+        <div class="media">
+            <div class="media-left">
+                <a><img></a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading" style="font-weight:bold;">{{ story.title }}</h4>
+                <h4 class="media-heading">High School</h4>
+                <h4 class="media-heading">College </h4>
+                <h4 class="media-heading">Mentor </h4>
+                <p> {{ story.description }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+</body>
+
+</html>

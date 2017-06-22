@@ -39,7 +39,7 @@ def success_blog(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'success_blog.html',
+        'success-stories.html',
         {'stories': story},
         context_instance=RequestContext(request,
         {
