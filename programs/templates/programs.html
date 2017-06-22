@@ -1,56 +1,70 @@
-{% extends "../../blog/templates/layout_en.html" %}
-
-{% block content %}
-{% load staticfiles %}
-
-<div class="container">
-
-   <div class="col-sm-8 blog-main">
-                  <div class="blog-post">
-        <h1 class="blog-title">{{ title }}</h1>
-        <p class="lead blog-description">The different programs offered by Education Haiti!</p>
-      </div>
-
-        <div class="row">
-
-        <div class="col-sm-8 blog-main">
-<div class="blog-main">
-{% for open_program in open_programs %}
-    <div class="blog-post">
-    <h2 class="blog-post-title">{{ open_program.name }}</h2>
-            <p class="blog-post-meta"> <b>Taking place at: </b>{{ open_program.location }}
-                 -- Starts on: <b>{{ open_program.start_date }}</b>  -- Ends on: <b>{{ open_program.end_date }}</b> </p>
-                  {% if open_program.picture %}
-                      <div class="col-md-5">
-            <p><img class="featurette-image img-responsive center-block" src="{{ open_program.picture.url }}" /></p>
-                      </div><br />
-                      {% else %}
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="No image yet.">
-     </div>
-    {% endif %}
-    <p></p>
-    <p>{{ open_program.description }}</p>
-    <p>{{ open_program.details }}</p>
-    <p><b>Fee: </b> {{ open_program.fee }} HTG</p>
-{% endfor %}
-</div>
-</div></div>
+{% extends '../../blog/templates/index.html' %}
+    <div class="article-list"></div>
+    <div class="projects-horizontal">
+        <div class="container" style="background-color:rgba(198,205,204,0.42);">
+            <div class="intro">
+                <h2 class="text-center">Programs </h2>
+                <p class="text-center">From writing and SAT workshops to Programming bootcamps, our programs are designed to better prepare you for your future studies.</p>
+            </div>
+            <div class="row projects">
+                <div class="col-sm-6 item">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <a href="#"></a>
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="name">Android Programming Bootcamp 2017</h3>
+                            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 item">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <a href="#"></a>
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="name">SAT preparation and techniques 2017</h3>
+                            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br />
-                <div class="col-sm-3 col-sm-offset-1 blog-sidebar">   <div class="blog-post">
-          <div class="sidebar-module sidebar-module-inset">
-          </br >
-              <h4> Resource Guides </h4>
-  <p>Take a look at useful resource guides here!
-  <p><a class="btn btn-inverse" href="{% url 'resources' %}" role="button">View details &raquo;</a></p></p>
-<br />
-            <h4>News</h4>
-        <p>Read news about us! <b>Coming Soon</b></p>
-                <p><a class="btn btn-danger" href="#" role="button">Coming Soon</a></p></p>
-</div></div></div>
-</div>
     </div>
-    <br /> <br />
+    <div class="footer-dark" style="background-color:#28415b;">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-push-6 item text">
+                        <h3>Education Haïti</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <div class="col-md-3 col-md-pull-6 col-sm-4 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Programs </a></li>
+                            <li><a href="#">Mentors </a></li>
+                            <li><a href="#">Reach Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-md-pull-6 col-sm-4 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 col-sm-4 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a></div>
+                </div>
+                <p class="copyright">Education Haiti© 2017</p>
+            </div>
+        </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+</body>
 
-{% endblock %}
+</html>

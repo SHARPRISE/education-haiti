@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime, timedelta
 
-from hashlib import sha1
 # Create your models here.
 
 UNIVERSITIES = (

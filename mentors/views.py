@@ -14,7 +14,7 @@ def our_mentors(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'our_mentors.html',
+        'mentors.html',
         {'mentors': mentor},
         context_instance=RequestContext(request,
         {
@@ -23,3 +23,8 @@ def our_mentors(request):
             'date': datetime.now().date(),
         })
     )
+
+def mentors(request):
+    mentor = Mentor.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request, 'mentors.html', {'mentors': mentor})

@@ -11,8 +11,11 @@
 <div class="blog-main">
 
 {% for mentor in mentors %}
+<div class="media">
+
+  <div class="media-left">
           <div class="blog-post">
-            <h3 class="blog-post-title">{{ mentor.first_name }} {{ mentor.last_name }}</h2>
+            <h3 class="media-heading">{{ mentor.first_name }} {{ mentor.last_name }}</h2>
 
             {% if mentor.picture %}
             <div class="col-md-5">
@@ -42,6 +45,8 @@
           </div><!-- /.blog-post -->
 
             <br />
+  </div>
+</div>
 {% endfor %}
 
 

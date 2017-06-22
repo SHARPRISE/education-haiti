@@ -27,6 +27,9 @@ def index(request):
         })
     )
 
+def get_homepage(request):
+    return render(request, 'index.html')
+
 
 # Success Stories page view
 def success_blog(request):

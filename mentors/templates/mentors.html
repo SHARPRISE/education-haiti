@@ -1,0 +1,26 @@
+{% extends "../../blog/templates/index.html" %}
+  {% block body %}
+    <div class="highlight-blue">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Mentors </h2>
+                <p class="text-center">Education Haiti mentors are young, successful haitien women and men who strive to help their mentees in the process of applying for education abroad. </p>
+            </div>
+            <div class="buttons"></div>
+        </div>
+    </div>
+      {% for mentor in mentors %}
+    <div class="jumbotron" style="padding: 50px">
+        <div class="media">
+            <div class="media-left">
+                <a><img class="media-object" src=" "></a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading" style="font-weight:bold;">{{ mentor.first_name }} {{ mentor.last_name }}</h4>
+                <h4 class="media-heading">{{ mentor.school_haiti }}</h4>
+                <h4 class="media-heading">Undergraduate Degree: {{ mentor.get_undergrad_college_display }}</h4>
+                <h4 class="media-heading">Graduate Degree: {{ mentor.get_grad_college_display }}</h4></div>
+        </div>
+    </div>
+      {% endfor %}
+    {% endblock %}
