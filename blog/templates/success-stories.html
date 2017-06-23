@@ -11,17 +11,20 @@
         </div>
     </div>
     {% for story in stories %}
-    <div class="jumbotron" style="background-color:#28415b; padding:30px">
+    <div class="jumbotron" style="background-color:#28415b; padding:50px">
         <div class="media">
+            {% if story.article_picture %}
             <div class="media-left">
-                <a><img></a>
+                <a><img class="media-object" src="{{ story.article_picture.url }}"></a>
             </div>
+            {% else %}
+            <div class="media-left">
+                <a><img class="media-object" data-src="holder.js/500x500/auto" alt="Image not available."></a>
+            </div>
+            {% endif %}
             <div class="media-body">
                 <h4 class="media-heading" style="font-weight:bold;">{{ story.title }}</h4>
-                <h4 class="media-heading">High School</h4>
-                <h4 class="media-heading">College </h4>
-                <h4 class="media-heading">Mentor </h4>
-                <p> {{ story.description }}</p>
+                <p> {{ story.content }}</p>
             </div>
         </div>
     </div>

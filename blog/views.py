@@ -12,7 +12,6 @@ from programs.models import Programs
 def index(request):
     # Gets the success stories
     story = SuccessStory.objects.filter(published=True).order_by('created')
-    program = Programs.objects.filter(expired_final=False)
     "Renders the home page"
     assert isinstance(request, HttpRequest)
     return render(
@@ -34,7 +33,7 @@ def get_homepage(request):
 # Success Stories page view
 def success_blog(request):
     # Gets the success stories
-    story = SuccessStory.objects.filter(published=True).reverse()
+    story = SuccessStory.objects.filter(published=True).order_by('created').reverse()
     "Renders the success stories page"
     assert isinstance(request, HttpRequest)
     return render(
