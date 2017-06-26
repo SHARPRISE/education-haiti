@@ -127,6 +127,8 @@ section.testimonials {
 
 .media-object {
   height: 150px;
+  float: left;
+  margin-right: 20px;
 }
 
 .site-footer h5 {
