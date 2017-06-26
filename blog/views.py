@@ -11,13 +11,13 @@ from programs.models import Programs
 # HomePage view
 def index(request):
     # Gets the success stories
-    story = SuccessStory.objects.filter(published=True).order_by('created')
+    story = SuccessStory.objects.filter(featured=True)
     "Renders the home page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'index.html',
-        {'stories': story, 'programs': program},
+        {'stories': story},
         context_instance=RequestContext(request,
         {
             'title': 'Home',
@@ -69,3 +69,7 @@ def guides(request):
             'title': 'Recommended Resources'
         })
     )
+
+
+def signup(request):
+    return render(request, 'apply.html')

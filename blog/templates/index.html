@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
     <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/user.css' %}">
     <link rel="stylesheet" href="{% static 'css/Article-List.css' %}">
     <link rel="stylesheet" href="{% static 'css/Footer-Clean.css' %}">
     <link rel="stylesheet" href="{% static 'css/Footer-Dark.css' %}">
     <link rel="stylesheet" href="{% static 'css/Highlight-Blue.css' %}">
     <link rel="stylesheet" href="{% static 'css/Navigation-Clean1.css' %}">
     <link rel="stylesheet" href="{% static 'css/Projects-Horizontal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+
 </head>
 
 <body>
@@ -39,9 +40,25 @@
     {% block body %}
     <div class="carousel slide" data-ride="carousel" id="carousel-1">
         <div class="carousel-inner" role="listbox">
-            <div class="item active"><img src="http://placeholdit.imgix.net/~text?txtsize=42&amp;txt=Carousel+Image&amp;w=1400&amp;h=600" alt="Slide Image" id="index-caroussel"></div>
-            <div class="item"><img src="http://placeholdit.imgix.net/~text?txtsize=42&amp;txt=Carousel+Image&amp;w=1400&amp;h=600" alt="Slide Image"></div>
-            <div class="item"><img src="http://placeholdit.imgix.net/~text?txtsize=42&amp;txt=Carousel+Image&amp;w=1400&amp;h=600" alt="Slide Image"></div>
+            {% for story in stories %}
+              {% if story.featured %}
+                {% if forloop.first %}
+                  <div class="item active"><img src="{{ story.article_picture.url }}" alt="Slide Image" id="index-carousel" height:640px;>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h3> {{ story.title }} </h3>
+                      <p> {{ story.description }} </p>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="item"><img src="{{ story.article_picture.url }}" alt="Slide Image" id="index-carousel" />
+                    <div class="carousel-caption d-none d-md-block">
+                      <h3> {{story.title}}</h3>
+                      <p> {{story.description}} </p>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
         </div>
         <div><a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a>
             <a class="right carousel-control" href="#carousel-1" role="button" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a>
@@ -55,15 +72,15 @@
     <div class="container">
         <div class="col-md-4">
             <h1>Mission </h1>
-            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. </p>
+            <p> We strive to provide talented haitian students with mentorship in an effort to open doors to greater and better higher education opportunities.</p>
         </div>
         <div class="col-md-4">
             <h1>Scope </h1>
-            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. </p>
+            <p> We currently accept mentees from haitian secondary schools located for the most part in the Port-au-Prince area. </p>
         </div>
         <div class="col-md-4">
             <h1>Programs </h1>
-            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. </p>
+            <p> Our various programs help students expand their horizons and prepare for the different college application processes. </p>
         </div>
     </div>
     {% endblock %}
@@ -78,8 +95,8 @@
                     <div class="col-md-3 col-md-pull-6 col-sm-4 item">
                         <h3>Services</h3>
                         <ul>
-                            <li><a href="#">Programs </a></li>
-                            <li><a href="#">Mentors </a></li>
+                            <li><a href="{% url 'programs' %}">Programs </a></li>
+                            <li><a href="{% url 'our_mentors' %}">Mentors </a></li>
                             <li><a href="#">Reach Out</a></li>
                         </ul>
                     </div>
