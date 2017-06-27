@@ -39,7 +39,11 @@ UNIVERSITIES = (
     ('32', 'University of Virginia'),
     ('33', 'St John\'s University'),
     ('34', 'Wake Forest University'),
-    ('35', 'N/A')
+    ('35', 'SUNY-ESF'),
+    ('36', 'RIT'),
+    ('37', 'Manhattan College'),
+    ('38', 'American University'),
+    ('39', 'N/A')
 )
 
 # User model

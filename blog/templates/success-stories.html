@@ -11,12 +11,10 @@
         </div>
     </div>
     {% for story in stories %}
-    <div class="jumbotron" style="background-color:#28415b; padding:50px">
+    <div class="jumbotron" style="background-color:#28415b; padding:5px">
         <div class="media">
             {% if story.article_picture %}
-            <div class="media-left">
                 <a><img class="media-object" src="{{ story.article_picture.url }}"></a>
-            </div>
             {% else %}
             <div class="media-left">
                 <a><img class="media-object" data-src="holder.js/500x500/auto" alt="Image not available."></a>
