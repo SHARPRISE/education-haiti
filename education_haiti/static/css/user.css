@@ -29,12 +29,36 @@
   }
 }
 
-@media (max-width:767px) {
-  .carousel-inner > .item > img {
+.carousel-inner {
+   height: 500px;
+   width: auto;
+ }
+
+ .carousel-inner > .item > img {
+   width:100%;
+   height: auto;
+   position: absolute;
+   top:-125px;
+ }
+
+ .carousel-caption {
+   position: absolute;
+   top: 325px;
+ }
+
+@media (max-width:992px) {
+  .carousel-inner {
     width: auto;
-    height: 100%;
+    height: 300px;
+  }
+  .carousel-caption {
     position: absolute;
-    top: 500px;
+    top: 125px;
+  }
+  .carousel-inner > .item > img {
+        width: 100%;
+    position: absolute;
+    top: 0px;
   }
 }
 
