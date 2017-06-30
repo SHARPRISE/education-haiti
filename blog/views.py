@@ -1,12 +1,9 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
-from django.http import Http404
-from django.http import HttpRequest
-from django.http import HttpResponse
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.http import HttpRequest, HttpResponse, Http404
 from django.template import RequestContext
 from datetime import datetime
 from .models import SuccessStory
 from programs.models import Programs
-
 
 # HomePage view
 def index(request):
