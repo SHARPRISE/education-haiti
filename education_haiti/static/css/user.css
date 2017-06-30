@@ -29,6 +29,39 @@
   }
 }
 
+.carousel-inner {
+   height: 500px;
+   width: auto;
+ }
+
+ .carousel-inner > .item > img {
+   width:100%;
+   height: auto;
+   position: absolute;
+   top:-125px;
+ }
+
+ .carousel-caption {
+   position: absolute;
+   top: 325px;
+ }
+
+@media (max-width:992px) {
+  .carousel-inner {
+    width: auto;
+    height: 300px;
+  }
+  .carousel-caption {
+    position: absolute;
+    top: 125px;
+  }
+  .carousel-inner > .item > img {
+        width: 100%;
+    position: absolute;
+    top: 0px;
+  }
+}
+
 .hero .get-it h1, .hero .get-it p {
   color:#fff;
   text-shadow:2px 2px 3px rgba(0,0,0,0.3);
