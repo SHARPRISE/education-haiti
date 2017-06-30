@@ -65,6 +65,7 @@
         width: 200%;
     position: absolute;
     left: -250px;
+    top: 20px;
   }
   .embed-responsive {
     width: 100%;
