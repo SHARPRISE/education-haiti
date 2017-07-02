@@ -28,7 +28,6 @@ from django.conf.urls.static import static
 from blog import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^blog/', include(blog_urls)),
     url(r'^people/', include(people_urls, namespace="people")),
@@ -36,5 +35,9 @@ urlpatterns = [
     url(r'^programs/', include(programs_urls)),
 ]
 
-if settings.DEBUG is True:
+if settings.ADMIN_ENABLED:
+    urlpatterns.append(url(r'^admin/', admin.site.urls))
+
+
+if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
