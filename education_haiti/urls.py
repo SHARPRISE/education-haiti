@@ -33,7 +33,6 @@ urlpatterns = [
     url(r'^people/', include(people_urls, namespace="people")),
     url(r'^our_mentors/', include(our_mentors_urls)),
     url(r'^programs/', include(programs_urls)),
-    url(r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
 
 if settings.ADMIN_ENABLED:
