@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'people',
     'mentors',
     'programs',
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -164,3 +165,19 @@ SESSION_COOKIE_HTTPONLY = True
 
 # The number of seconds until this session expires
 SESSION_COOKIE_AGE = 172800
+
+
+
+# Amazon S3 settings
+AWS_STORAGE_BUCKET_NAME = 'education-haiti'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+# AWS custom domain
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+
+#media file location settings
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
