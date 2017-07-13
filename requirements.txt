@@ -9,3 +9,4 @@ SQLAlchemy==1.0.8
 static3==0.6.1
 virtualenv==15.1.0
 whitenoise==3.3.0
+Pillow==4.0.0
