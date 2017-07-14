@@ -28,7 +28,9 @@ DEBUG = False
 ALLOWED_HOSTS = ['education-haiti.herokuapp.com',
     'educationhaiti.com',
     'education-haiti.org',
-    '127.0.0.1',
+    'www.education-haiti.org.herokudns.com',
+    'www.educationhaiti.com.herokudns.com',
+    'educationhaiti.com.herokudns.com'
 ]
 
 
