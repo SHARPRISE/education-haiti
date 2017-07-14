@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Admin panel off for production settings.
@@ -137,19 +137,19 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(PROJECT_ROOT)
-MEDIA_URL = '/education_haiti/'
-
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# STATIC_URL = '/static/'
+#
+# MEDIA_ROOT = os.path.join(PROJECT_ROOT)
+# MEDIA_URL = '/education_haiti/'
+#
+#
+# # Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
+#
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Internals
 # Auth
@@ -167,17 +167,4 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_AGE = 172800
 
 
-
-# Amazon S3 settings
-AWS_STORAGE_BUCKET_NAME = 'education-haiti'
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-
-# AWS custom domain
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-
-#media file location settings
-MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
+from education_haiti.aws.conf import * # Amazon S3 settings
