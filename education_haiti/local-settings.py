@@ -84,14 +84,7 @@ WSGI_APPLICATION = 'education_haiti.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 # uncomment and change only if you are working with local database
-#DATABASES = {
- # 'default': {
- #      'ENGINE':'django.db.backends.postgresql',
-#       'NAME': 'education-haiti-local',
-#       'USER': 'alexandre',
-#       'PASSWORD': 'LexLuminisCC97'
-#   }
-#}
+
 
 # comment when using local
 import dj_database_url
@@ -142,9 +135,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 #
 # MEDIA_ROOT = os.path.join(PROJECT_ROOT)
 # MEDIA_URL = '/education_haiti/'
-#
-#
-# # Extra places for collectstatic to find static files.
+
+# Extra places for collectstatic to find static files.
+
 # STATICFILES_DIRS = (
 #     os.path.join(PROJECT_ROOT, 'static'),
 # )
@@ -165,6 +158,5 @@ SESSION_COOKIE_HTTPONLY = True
 
 # The number of seconds until this session expires
 SESSION_COOKIE_AGE = 172800
-
 
 from education_haiti.aws.conf import * # Amazon S3 settings
