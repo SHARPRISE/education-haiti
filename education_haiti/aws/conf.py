@@ -1,9 +1,13 @@
 import datetime
-AWS_ACCESS_KEY_ID = "AKIAILVVWD6M7WDKBFAA"
-AWS_SECRET_ACCESS_KEY = "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"
+import os
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
+AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
 
 DEFAULT_FILE_STORAGE = 'education_haiti.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'education_haiti.aws.utils.StaticRootS3BotoStorage'
@@ -13,7 +17,6 @@ S3_URL = '//{}.s3.amazonaws.com/'.format(AWS_STORAGE_BUCKET_NAME)
 MEDIA_URL = '//{}.s3.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME)
 MEDIA_ROOT = MEDIA_URL
 STATIC_URL = S3_URL + 'static/'
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months
