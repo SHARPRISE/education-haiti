@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Admin panel off for production settings.
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'people',
     'mentors',
     'programs',
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -135,8 +136,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # MEDIA_ROOT = os.path.join(PROJECT_ROOT)
 # MEDIA_URL = '/education_haiti/'
 
-
 # Extra places for collectstatic to find static files.
+
 # STATICFILES_DIRS = (
 #     os.path.join(PROJECT_ROOT, 'static'),
 # )
@@ -158,4 +159,4 @@ SESSION_COOKIE_HTTPONLY = True
 # The number of seconds until this session expires
 SESSION_COOKIE_AGE = 172800
 
-from education_haiti.aws.conf import *
+from education_haiti.aws.conf import * # Amazon S3 settings
