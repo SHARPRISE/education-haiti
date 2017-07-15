@@ -25,14 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['education-haiti.herokuapp.com',
-    'educationhaiti.com',
-    'education-haiti.org',
-    'www.education-haiti.org.herokudns.com',
-    'www.educationhaiti.com.herokudns.com',
-    'educationhaiti.com.herokudns.com'
-]
-
+ALLOWED_HOSTS = ['*']
 
 # Admin panel off for production settings.
 ADMIN_ENABLED = os.environ.get('ADMIN_ENABLED')
