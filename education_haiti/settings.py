@@ -25,7 +25,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['education-haiti.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['education-haiti.herokuapp.com',
+    'educationhaiti.com',
+    'education-haiti.org',
+    'www.education-haiti.org.herokudns.com',
+    'www.educationhaiti.com.herokudns.com',
+    'educationhaiti.com.herokudns.com'
+]
 
 
 # Admin panel off for production settings.
@@ -40,10 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #homemade apps
     'blog',
     'people',
     'mentors',
     'programs',
+    #third party apps
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -137,19 +146,19 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(PROJECT_ROOT)
-MEDIA_URL = '/media/'
-
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# STATIC_URL = '/static/'
+#
+# MEDIA_ROOT = os.path.join(PROJECT_ROOT)
+# MEDIA_URL = '/media/'
+#
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
+#
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Internals
 # Auth
@@ -165,3 +174,5 @@ SESSION_COOKIE_HTTPONLY = True
 
 # The number of seconds until this session expires
 SESSION_COOKIE_AGE = 172800
+
+from education_haiti.aws.conf import *
