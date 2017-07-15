@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'people',
     'mentors',
     'programs',
+    #3rd party
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -81,16 +83,6 @@ WSGI_APPLICATION = 'education_haiti.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-# uncomment and change only if you are working with local database
-#DATABASES = {
- # 'default': {
- #      'ENGINE':'django.db.backends.postgresql',
-#       'NAME': 'education-haiti-local',
-#       'USER': 'alexandre',
-#       'PASSWORD': 'LexLuminisCC97'
-#   }
-#}
 
 # comment when using local
 import dj_database_url
@@ -136,19 +128,19 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+#STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT)
-MEDIA_URL = '/education_haiti/'
+#MEDIA_ROOT = os.path.join(PROJECT_ROOT)
+#MEDIA_URL = '/education_haiti/'
 
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+#STATICFILES_DIRS = (
+#    os.path.join(PROJECT_ROOT, 'static'),
+#)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Internals
 # Auth
@@ -164,3 +156,5 @@ SESSION_COOKIE_HTTPONLY = True
 
 # The number of seconds until this session expires
 SESSION_COOKIE_AGE = 172800
+
+from education_haiti.aws.conf import *
