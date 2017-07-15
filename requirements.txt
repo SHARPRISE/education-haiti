@@ -10,6 +10,3 @@ static3==0.6.1
 virtualenv==15.1.0
 whitenoise==3.3.0
 Pillow==4.0.0
-boto==2.48.0
-boto3==1.4.4
-django-storages==1.6.3
