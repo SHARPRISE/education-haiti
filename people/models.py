@@ -43,7 +43,8 @@ UNIVERSITIES = (
     ('36', 'RIT'),
     ('37', 'Manhattan College'),
     ('38', 'American University'),
-    ('39', 'N/A')
+    ('39', 'N/A'),
+    ('40', 'Pace University')
 )
 
 # User model
