@@ -101,7 +101,6 @@ User._meta.get_field('email')._unique = True
 class Mentor(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to="mentor_profile_images", blank=True)
-    biography = models.TextField(null=True)
 #    graduating  = models.DateField()
     undergrad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University', help_text='Your Undergraduate College')
     grad_college = models.CharField(max_length=255, choices=UNIVERSITIES, default='No University', help_text='Your Graduate College')

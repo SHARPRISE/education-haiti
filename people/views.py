@@ -73,7 +73,6 @@ def mentor_update(request, template='mentor_profile.html'):
         online_user = request.user
         mentor = online_user.mentor
         if form.is_valid():
-            mentor.biography = form.cleaned_data['biography']
             mentor.grad_college = form.cleaned_data['grad_college']
             mentor.majors = form.cleaned_data['majors']
             mentor.interests = form.cleaned_data['interests']
@@ -211,5 +210,3 @@ def new_story(request):
                                             'form': form,
                                         })
     )
-
-

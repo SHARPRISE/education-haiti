@@ -96,17 +96,10 @@ class MentorLoginForm(forms.ModelForm):
 class MentorUpdateForm(forms.ModelForm):
     class Meta:
         model = Mentor
-        fields = ('biography','grad_college','majors','interests','residency','phone','current_status','school_haiti','first_name',
+        fields = ('grad_college','majors','interests','residency','phone','current_status','school_haiti','first_name',
                   'last_name','picture')
         picture = forms.ImageField(label='Upload your profile picture')
         widgets = {
-            'biography': forms.Textarea(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Your Biography',
-                    'required': True,
-                }
-            ),
             'grad_college': forms.Select(
                 attrs={
                     'class': 'form-control',
