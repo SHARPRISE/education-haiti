@@ -9,7 +9,7 @@
             <div class="buttons"></div>
         </div>
     </div>
-      {% for mentor in mentors %}
+      {% for mentor in mentors|dictsort:"first_name" %}
     <div class="jumbotron" style="padding: 5px">
         <div class="media">
                 {% if mentor.picture %}
