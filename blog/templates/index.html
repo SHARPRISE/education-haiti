@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} EducationHaiti {% endblock %}</title>
+    <title>{% block title %} Welcome to EducationHaiti {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
     <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
@@ -28,6 +28,11 @@
       ga('send', 'pageview');
     </script>
     <meta name="google-site-verification" content="Z_G1Z3fd55anZBaNc_trR7IW_7QHlo41PdQT5l57dVE" />
+  {% block meta_description %}
+    <meta name="description" content="EducationHaiti seeks to forge the
+     next generation of leaders in Haiti by providing assistance and mentorship
+     for applicants to foreign Universities." >
+  {% endblock %}
 </head>
 
 <body>
@@ -110,8 +115,8 @@
                     <div class="col-md-3 col-md-pull-6 col-sm-4 item">
                         <h3>Services</h3>
                         <ul>
-                            <li><a href="{% url 'programs' %}">Programs </a></li>
-                            <li><a href="{% url 'our_mentors' %}">Mentors </a></li>
+                            <li><a href="{% url 'apply' %}"> Apply </a></li>
+                            <li><a href="{% url 'our_mentors' %}"> Mentors </a></li>
                             <li><a href="#">Reach Out</a></li>
                         </ul>
                     </div>
