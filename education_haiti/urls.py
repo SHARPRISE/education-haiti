@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+
 
 from blog import urls as blog_urls
 from people import urls as people_urls
@@ -25,14 +27,28 @@ from programs import urls as  programs_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.views.generic import TemplateView
+
 from blog import views
+
+from blog.sitemaps import StaticViewSitemap
+from mentors.sitemaps import StaticViewSitemap2
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'static2': StaticViewSitemap2,
+}
+
+
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt',
+                                                content_type='text/plain')),
     url(r'^blog/', include(blog_urls)),
-    url(r'^people/', include(people_urls, namespace="people")),
     url(r'^our_mentors/', include(our_mentors_urls)),
-    url(r'^programs/', include(programs_urls)),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+    name='django.contrib.sitemaps.views.sitemap')
 ]
 
 if settings.ADMIN_ENABLED:
