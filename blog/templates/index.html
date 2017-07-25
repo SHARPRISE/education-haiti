@@ -1,137 +1,119 @@
 <!DOCTYPE html>
-<html>
 
 {% load static from staticfiles %}
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} EducationHaiti {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
-    <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Article-List.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Footer-Clean.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Footer-Dark.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Highlight-Blue.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-Clean1.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Projects-Horizontal.css' %}">
-    <link rel="stylesheet" href="{% static 'css/user.css' %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-77346948-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <meta name="google-site-verification" content="Z_G1Z3fd55anZBaNc_trR7IW_7QHlo41PdQT5l57dVE" />
+<meta charset=utf-8>
+<meta content="width=device-width,initial-scale=1"name=viewport>
+<title>{% block title %} EducationHaiti {% endblock %}</title>
+<link href="{% static 'bootstrap/css/bootstrap.min.css' %}"rel=stylesheet>
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic"rel=stylesheet>
+<link href="{% static 'fonts/ionicons.min.css' %}"rel=stylesheet>
+<link href="{% static 'css/Article-List.css' %}"rel=stylesheet>
+<link href="{% static 'css/Footer-Clean.css' %}"rel=stylesheet>
+<link href="{% static 'css/Footer-Dark.css' %}"rel=stylesheet>
+<link href="{% static 'css/Highlight-Blue.css' %}"rel=stylesheet>
+<link href="{% static 'css/Navigation-Clean1.css' %}"rel=stylesheet>
+<link href="{% static 'css/Projects-Horizontal.css' %}"rel=stylesheet>
+<link href="{% static 'css/user.css' %}"rel=stylesheet>
+<link href="{% static 'favicon.ico' %}"rel="shortcut icon"type=image/png>
+<script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src="https://www.google-analytics.com/analytics.js",s.parentNode.insertBefore(o,s)}(window,document,"script",0,"ga"),ga("create","UA-77346948-1","auto"),ga("send","pageview")</script>
+<meta content=Z_G1Z3fd55anZBaNc_trR7IW_7QHlo41PdQT5l57dVE name=google-site-verification>
 </head>
-
 <body>
-    <div></div>
-    <nav class="navbar navbar-default navigation-clean">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand navbar-link" href="{% url 'index' %}"> <i class="glyphicon glyphicon-education" style="width:22px;font-size:21px;margin-top:-2px;"></i>EducationHaïti</a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li role="presentation"><a href="{% url 'success_blog' %}">Success Stories</a></li>
-                    <li role="presentation"><a href="{% url 'our_mentors' %}">Mentors </a></li>
-                    <li role="presentation"><a href="{% url 'resources' %}">Resources </a></li>
-                    <li role="presentation"><a href="{% url 'apply' %}">Apply </a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% block body %}
-    <div class="carousel slide" data-ride="carousel" id="carousel-1">
-        <div class="carousel-inner" role="listbox">
-            {% for story in stories %}
-              {% if story.featured %}
-                {% if forloop.first %}
-                  <div class="item active">
-                    <img src="{{ story.article_picture.url }}" alt="Slide Image" id="index-carousel" />
-                    <div class="carousel-caption d-none d-md-block">
-                      <h3> {{ story.title }} </h3>
-                      <p> {{ story.description }} </p>
-                    </div>
-                  </div>
-                {% else %}
-                  <div class="item">
-                    <img src="{{ story.article_picture.url }}" alt="Slide Image" id="index-carousel" />
-                    <div class="carousel-caption d-none d-md-block">
-                      <h3> {{story.title}}</h3>
-                      <p> {{story.description}} </p>
-                    </div>
-                  </div>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-        </div>
-        <div><a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a>
-            <a class="right carousel-control" href="#carousel-1" role="button" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a>
-        </div>
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-1" data-slide-to="1"></li>
-            <li data-target="#carousel-1" data-slide-to="2"></li>
-            <li data-target="#carousel-1" data-slide-to="3"></li>
-            <li data-target="#carousel-1" data-slide-to="4"></li>
-        </ol>
-    </div>
-    <div class="container">
-        <div class="col-md-4">
-            <h1>Mission </h1>
-            <p> To forge the next generation of young leaders in Haiti.</p>
-        </div>
-        <div class="col-md-4">
-            <h1>Scope </h1>
-            <p> We currently accept mentees from haitian secondary schools located for the most part in the Port-au-Prince area. </p>
-        </div>
-        <div class="col-md-4">
-            <h1>Programs </h1>
-            <p> Our various programs help students expand their horizons and prepare for the different college application processes. </p>
-        </div>
-    </div>
-    {% endblock %}
-    <div class="footer-dark" style="background-color:#28415b;">
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-push-6 item text">
-                        <h3>Education Haïti</h3>
-                        <p> We strive to provide talented haitian students with mentorship in an effort to open doors to greater and better higher education opportunities.</p>
-                    </div>
-                    <div class="col-md-3 col-md-pull-6 col-sm-4 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="{% url 'programs' %}">Programs </a></li>
-                            <li><a href="{% url 'our_mentors' %}">Mentors </a></li>
-                            <li><a href="#">Reach Out</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 col-md-pull-6 col-sm-4 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12 col-sm-4 item social"><a href="https://www.facebook.com/educationhaiti/"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a></div>
-                </div>
-                <p class="copyright">Education Haiti© 2017</p>
-            </div>
-        </footer>
-    </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
-</body>
 
-</html>
+<nav class="navbar navbar-default navigation-clean">
+<div class=container>
+<div class=navbar-header>
+<a href="{% url 'index' %}"class="navbar-brand navbar-link">EducationHaïti</a>
+<button class="collapsed navbar-toggle"data-target=#navcol-1 data-toggle=collapse><span class=sr-only>Toggle navigation</span></button>
+</div>
+<div class="collapse navbar-collapse"id=navcol-1>
+<ul class="nav navbar-nav navbar-right">
+<li role=presentation><a href="{% url 'success_blog' %}">Success Stories</a></li>
+<li role=presentation><a href="{% url 'our_mentors' %}">Mentors</a></li>
+<li role=presentation><a href="{% url 'resources' %}">Resources</a></li>
+<li role=presentation><a href="{% url 'apply' %}">Apply</a></li>
+</ul>
+</div>
+</div>
+</nav>
+{% block body %}
+<div class="carousel slide"id=carousel-1 data-ride=carousel>
+<div class=carousel-inner role=listbox>
+{% for story in stories %} {% if story.featured %} {% if forloop.first %}
+<div class="item active">
+<img alt="Slide Image"id=index-carousel src="{{ story.article_picture.url }}">
+<div class="carousel-caption d-md-block d-none">
+<h3>{{ story.title }}</h3>
+<p>{{ story.description }}</p>
+</div>
+</div>
+{% else %}
+<div class=item>
+<img alt="Slide Image"id=index-carousel src="{{ story.article_picture.url }}">
+<div class="carousel-caption d-md-block d-none">
+<h3>{{story.title}}</h3>
+<p>{{story.description}}</p>
+</div>
+</div>
+{% endif %} {% endif %} {% endfor %}
+</div>
+<div><a href=#carousel-1 class="carousel-control left"data-slide=prev role=button><span class=sr-only>Previous</span></a>
+<a href=#carousel-1 class="carousel-control right"data-slide=next role=button><span class=sr-only>Next</span></a>
+</div>
+<ol class=carousel-indicators>
+
+
+
+
+
+</ol>
+</div>
+<div class=container>
+<div class=col-md-4>
+<h1>Mission</h1>
+<p>To forge the next generation of young leaders in Haiti.</p>
+</div>
+<div class=col-md-4>
+<h1>Scope</h1>
+<p>We currently accept mentees from haitian secondary schools located for the most part in the Port-au-Prince area.</p>
+</div>
+<div class=col-md-4>
+<h1>Programs</h1>
+<p>Our various programs help students expand their horizons and prepare for the different college application processes.</p>
+</div>
+</div>
+{% endblock %}
+<div class=footer-dark style=background-color:#28415b>
+<footer>
+<div class=container>
+<div class=row>
+<div class="item col-md-6 col-md-push-6 text">
+<h3>Education Haïti</h3>
+<p>We strive to provide talented haitian students with mentorship in an effort to open doors to greater and better higher education opportunities.</p>
+</div>
+<div class="item col-sm-4 col-md-3 col-md-pull-6">
+<h3>Services</h3>
+<ul>
+<li><a href="{% url 'programs' %}">Programs</a></li>
+<li><a href="{% url 'our_mentors' %}">Mentors</a></li>
+<li><a href=#>Reach Out</a></li>
+</ul>
+</div>
+<div class="item col-sm-4 col-md-3 col-md-pull-6">
+<h3>About</h3>
+<ul>
+<li><a href=#>Company</a></li>
+<li><a href=#>Team</a></li>
+<li><a href=#>Careers</a></li>
+</ul>
+</div>
+<div class="item col-sm-4 col-md-12 social"><a href=https://www.facebook.com/educationhaiti/ ></a><a href=#></a></div>
+</div>
+<p class=copyright>Education Haiti© 2017</p>
+</div>
+</footer>
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>

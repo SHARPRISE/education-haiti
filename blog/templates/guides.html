@@ -1,21 +1,17 @@
-{% extends "index.html" %}
-{% load staticfiles %}
-{% block body %}
-
+{% extends "index.html" %} {% load staticfiles %} {% block body %}
 <div class="panel panel-default">
-       <div class="panel-heading">
-           <h3 class="panel-title">Guides</h3>
-      </div>
-       <div class="panel-body"><span>Studying in the United States</span>
-           <ul class="list-group">
-               <li class="list-group-item"><a href="{% static 'guides/EtudierAuxUSA.pdf' %}"><span>Your guide to studying in the US.</span></a></li>
-           </ul>
-       </div>
-       <div class="panel-body"><span>Studying in Canada </span>
-           <ul class="list-group">
-               <li class="list-group-item"><a href="{% static 'guides/EtudierAuCanada.pdf' %}"><span>Your guide to studying in Canada.</span></a></li>
-           </ul>
-       </div>
+<div class=panel-heading>
+<h3 class=panel-title>Guides</h3>
 </div>
-
+<div class=panel-body><span>Studying in the United States</span>
+<ul class=list-group>
+<li class=list-group-item><a href="{% static 'guides/EtudierAuxUSA.pdf' %}"><span>Your guide to studying in the US.</span></a></li>
+</ul>
+</div>
+<div class=panel-body><span>Studying in Canada </span>
+<ul class=list-group>
+<li class=list-group-item><a href="{% static 'guides/EtudierAuCanada.pdf' %}"><span>Your guide to studying in Canada.</span></a></li>
+</ul>
+</div>
+</div>
 {% endblock %}

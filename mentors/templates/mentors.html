@@ -1,36 +1,33 @@
-{% extends "../../blog/templates/index.html" %}
-  {% block body %}
-    <div class="highlight-blue">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Mentors </h2>
-                <p class="text-center">Education Haiti mentors are young, successful haitien women and men who strive to help their mentees in the process of applying for education abroad. </p>
-            </div>
-            <div class="buttons"></div>
-        </div>
-    </div>
-      {% for mentor in mentors|dictsort:"first_name" %}
-    <div class="jumbotron" style="padding: 5px">
-        <div class="media">
-                {% if mentor.picture %}
-                <div class="media-left">
-                  <a><img class="media-object" src="{{ mentor.picture.url }}"></a>
-                </div>
-                {% else %}
-                <div class="media-left">
-                    <a><img class="media-object" data-src="holder.js/500x500/auto" alt="Image not available."></a>
-                </div>
-                {% endif %}
-            <div class="media-body">
-                <h4 class="media-heading" style="font-weight:bold;">{{ mentor.first_name }} {{ mentor.last_name }}</h4>
-                <h4 class="media-heading">{{ mentor.school_haiti }}</h4>
-                <h4 class="media-heading">Undergraduate University: {{ mentor.get_undergrad_college_display }}</h4>
-                {% if mentor.grad_college != '39' %}
-                <h4 class="media-heading">Graduate University: {{ mentor.get_grad_college_display }}</h4>
-                {% endif %}
-            </div>
+{% extends "../../blog/templates/index.html" %} {% block body %}
+<div class=highlight-blue>
+<div class=container>
+<div class=intro>
+<h2 class=text-center>Mentors</h2>
+<p class=text-center>Education Haiti mentors are young, successful haitien women and men who strive to help their mentees in the process of applying for education abroad.</p>
+</div>
 
-        </div>
-    </div>
-      {% endfor %}
-    {% endblock %}
+</div>
+</div>
+{% for mentor in mentors|dictsort:"first_name" %}
+<div class=jumbotron style=padding:5px>
+<div class=media>
+{% if mentor.picture %}
+<div class=media-left>
+<a><img class=media-object src="{{ mentor.picture.url }}"></a>
+</div>
+{% else %}
+<div class=media-left>
+<a><img class=media-object alt="Image not available."data-src=holder.js/500x500/auto></a>
+</div>
+{% endif %}
+<div class=media-body>
+<h4 class=media-heading style=font-weight:700>{{ mentor.first_name }} {{ mentor.last_name }}</h4>
+<h4 class=media-heading>{{ mentor.school_haiti }}</h4>
+<h4 class=media-heading>Undergraduate University: {{ mentor.get_undergrad_college_display }}</h4>
+{% if mentor.grad_college != '39' %}
+<h4 class=media-heading>Graduate University: {{ mentor.get_grad_college_display }}</h4>
+{% endif %}
+</div>
+</div>
+</div>
+{% endfor %} {% endblock %}

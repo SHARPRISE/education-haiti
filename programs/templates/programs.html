@@ -1,29 +1,26 @@
-{% extends '../../blog/templates/index.html' %}
+{% extends '../../blog/templates/index.html' %} {% block body %}
 
-    {% block body %}
-    <div class="article-list"></div>
-    <div class="projects-horizontal">
-        <div class="container" style="background-color:rgba(198,205,204,0.42);">
-            <div class="intro">
-                <h2 class="text-center">Programs </h2>
-                <p class="text-center">From writing and SAT workshops to Programming bootcamps, our programs are designed to better prepare you for your future studies.</p>
-            </div>
-            {% for open_program in open_programs %}
-            <div class="row projects">
-                <div class="col-sm-6 item">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <a href="#"></a>
-                        </div>
-                        <div class="col-md-7">
-                            <h3 class="name"><i>{{ open_program.name }}</i></h3>
-                            <p class="description">Location: {{ open_program.location }}</p>
-                            <p class="description">Summary: {{ open_program.description }}</p>
-                        </div>
-                    </div>
-                </div>
-              {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% endblock %}
+<div class=projects-horizontal>
+<div class=container style=background-color:rgba(198,205,204,.42)>
+<div class=intro>
+<h2 class=text-center>Programs</h2>
+<p class=text-center>From writing and SAT workshops to Programming bootcamps, our programs are designed to better prepare you for your future studies.</p>
+</div>
+{% for open_program in open_programs %}
+<div class="row projects">
+<div class="col-sm-6 item">
+<div class=row>
+<div class=col-md-5>
+</div>
+<div class=col-md-7>
+<h3 class=name><i>{{ open_program.name }}</i></h3>
+<p class=description>Location: {{ open_program.location }}</p>
+<p class=description>Summary: {{ open_program.description }}</p>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endblock %}
