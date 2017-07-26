@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, render_to_response, HttpResponseRedirect, get_object_or_404
 from django.http import HttpRequest, HttpResponse, Http404
 from django.template import RequestContext
 from datetime import datetime
@@ -67,6 +67,18 @@ def guides(request):
         })
     )
 
-
 def signup(request):
     return render(request, 'apply.html')
+
+def handler404(request):
+    response = render_to_response('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
+def handler500(request):
+    response = render_to_response('500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
