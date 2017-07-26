@@ -32,7 +32,16 @@
 <li role=presentation><a href="{% url 'success_blog' %}">Success Stories</a></li>
 <li role=presentation><a href="{% url 'our_mentors' %}">Mentors</a></li>
 <li role=presentation><a href="{% url 'resources' %}">Resources</a></li>
-<li role=presentation><a href="{% url 'apply' %}">Apply</a></li>
+<li class="dropdown" role=presentation>
+<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="">
+Apply
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu" role="menu">
+<li role=presentation><a href="{% url 'apply' %}">Apply as a student</a></li>
+<li role=presentation><a href="{% url 'mentor_application' %}">Apply as a mentor</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -87,24 +96,26 @@
 <p>We strive to provide talented haitian students with mentorship in an effort to open doors to greater and better higher education opportunities.</p>
 </div>
 <div class="item col-sm-4 col-md-3 col-md-pull-6">
-<h3>Services</h3>
+<h3>Pages</h3>
 <ul>
-
+<li><a href="{% url 'success_blog' %}">Success Stories</a></li>
 <li><a href="{% url 'our_mentors' %}">Mentors</a></li>
-<li><a href=#>Reach Out</a></li>
+<li><a href="{% url 'success_blog' %}">Resources</a></li>
+<li><a href="{% url 'mentor_application' %}">Become a Mentor</a></li>
+<li><a href="{% url 'apply' %}">Apply</a></li>
 </ul>
 </div>
 <div class="item col-sm-4 col-md-3 col-md-pull-6">
-<h3>About</h3>
+<h3>Mentorship</h3>
 <ul>
-<li><a href=#>Company</a></li>
-<li><a href=#>Team</a></li>
-<li><a href=#>Careers</a></li>
+<li><a href="{% url 'our_mentors' %}">Our Mentors</a></li>
+<li><a href="{% url 'mentor_application' %}">Become a Mentor</a></li>
 </ul>
 </div>
-<div class="item col-sm-4 col-md-12 social"><a href=https://www.facebook.com/educationhaiti/><i class="icon ion-social-facebook-outline"></i></a><a href=#><i class="icon ion-social-twitter-outline"></i></a></div>
+<div class="item col-sm-4 col-md-12 social">
+  <a href=https://www.facebook.com/educationhaiti/><i class="icon ion-social-facebook-outline"></i></a>
+  <p class=copyright>Education Haiti © 2017</p>
 </div>
-<p class=copyright>Education Haiti© 2017</p>
 </div>
 </footer>
 </div>

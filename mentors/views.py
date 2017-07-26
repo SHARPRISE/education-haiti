@@ -6,6 +6,8 @@ from people.models import Mentor
 
 # Create your views here.
 
+def become_a_mentor(request):
+    return render(request, 'mentor_application.html')
 
 def our_mentors(request):
     #Gets the success stories
