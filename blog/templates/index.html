@@ -68,11 +68,11 @@ Apply
 {% endif %} {% endif %} {% endfor %}
 {% for mentor in mentors %}
 <div class="item active">
-<img style=filter:blur(10px) alt="Slide Image"id=index-carousel src="{{ mentor.picture.url }}">
-<p style=text-align:center><img src="{{ mentor.picture.url }}"></p>
+<img style=filter:blur(15px) alt="Slide Image"id=index-carousel src="{{ mentor.picture.url }}">
+  <img class="img-responsive center-block" style=width:20%;position:relative;top:25%;border:5px src="{{ mentor.picture.url }}">
 <div class="carousel-caption d-md-block d-none">
-<h3> Highlighted Mentor of the Week </h3>
-<h3>{{ mentor.first_name }} {{ mentor.last_name }} | {{ mentor.get_undergrad_college_display }}</h3>
+<h3> Mentor Highlight </h3>
+<p>{{ mentor.first_name }} {{ mentor.last_name }} | {{ mentor.get_undergrad_college_display }}</p>
 <p><a href="{% url 'our_mentors' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Read his Story</a></p>
 </div>
 </div>
