@@ -1,7 +1,7 @@
 {% extends "../../blog/templates/index.html" %} {% block body %}
 <div class=highlight-blue>
   <div class=intro>
-  <h2 class=text-center>Highlighted Mentor of the Week  </h2>
+  <h2 class=text-center> Highlighted Mentor of the Week </h2>
   <style>
     a {
       color: rgb(255,255,0);
@@ -28,20 +28,20 @@
 {% if mentor.grad_college != '39' %}
 <h4 class=media-heading>Graduate University: {{ mentor.get_grad_college_display }}</h4>
 {% endif %}
-<h5> {{ mentor.highlight_text }} </h5>
+<p style=font-size:18px;> {{ mentor.highlight_text }} </p>
 {% endif %}
 {% endfor %}
 </div></div>
 <div class=highlight-blue>
 <div class=container>
 <div class=intro>
-<h2 class=text-center>Mentors</h2>
+<h3 class=text-center>Mentors</h3>
 <style>
   a {
     color: rgb(255,255,0);
   }
 </style>
-<p class=text-center>Education Haiti mentors are young, successful haitien women and men who strive to help their mentees in the process of applying for education abroad. If you are interested in becoming a mentor, please visit <a href="{% url 'mentor_application' %}">this page</a></p>
+<h4 class=text-center>Education Haiti mentors are young, successful haitien women and men who strive to help their mentees in the process of applying for education abroad. If you are interested in becoming a mentor, please visit <a href="{% url 'mentor_application' %}">this page</a></h4>
 </div>
 
 </div>
