@@ -15,8 +15,8 @@ class UserAdmin(admin.ModelAdmin):
 
 class MentorAdmin(admin.ModelAdmin):
     fields          = ('user','first_name','last_name','undergrad_college','grad_college','majors','interests','residency',
-                       'phone','current_status','school_haiti', 'picture')
-    list_display = ('first_name', 'last_name', 'undergrad_college', 'majors')
+                       'phone','current_status','school_haiti', 'picture', 'highlight_text', 'highlight')
+    list_display = ('first_name', 'last_name', 'undergrad_college', 'majors', 'highlight')
     ordering = ('first_name', 'last_name')
     search_fields = ('first_name', 'last_name')
 

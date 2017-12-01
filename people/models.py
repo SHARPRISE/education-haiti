@@ -114,6 +114,8 @@ class Mentor(models.Model):
     last_name = models.CharField(max_length=100)
 #   mentees = models.ManyToManyField(Mentee)
 #   todos = models.ManyToManyField(ToDo)
+    highlight = models.BooleanField(default=False)
+    highlight_text = models.TextField(default="Highlight Story")
     hidden = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ["university"]
