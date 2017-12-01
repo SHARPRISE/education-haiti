@@ -3,18 +3,20 @@ from django.http import HttpRequest, HttpResponse, Http404
 from django.template import RequestContext
 from datetime import datetime
 from .models import SuccessStory
+from people.models import Mentor
 from programs.models import Programs
 
 # HomePage view
 def index(request):
     # Gets the success stories
     story = SuccessStory.objects.filter(featured=True).order_by('top_story', 'created').reverse()
+    mentor = Mentor.objects.filter(highlight=True)
     "Renders the home page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'index.html',
-        {'stories': story},
+        {'stories': story, 'mentors':mentor},
         context_instance=RequestContext(request,
         {
             'title': 'Home',
